@@ -3,7 +3,6 @@ package com.smartling.connector.yext.sdk.client;
 import com.smartling.connector.yext.sdk.Configuration;
 import com.smartling.connector.yext.sdk.OAuthRequestInterceptor;
 import feign.Feign;
-import feign.Logger;
 import feign.form.FormEncoder;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
@@ -28,8 +27,6 @@ public abstract class ApiClient
                     .decoder(new JacksonDecoder())
                     .errorDecoder(new YextRestErrorDecoder())
                     .options(configuration.getOptions())
-                    .logger(new Logger.JavaLogger().appendToFile("logs/http.log"))
-                    .logLevel(Logger.Level.FULL)
                     .target(apiClass, apiBaseUrl);
     }
 
@@ -41,8 +38,6 @@ public abstract class ApiClient
                     .decoder(new JacksonDecoder())
                     .errorDecoder(new YextRestErrorDecoder())
                     .options(configuration.getOptions())
-                    .logger(new Logger.JavaLogger().appendToFile("logs/http.log"))
-                    .logLevel(Logger.Level.FULL)
                     .target(apiClass, apiBaseUrl);
     }
 }
