@@ -27,12 +27,6 @@ public class ConfigurationTest
         new Configuration("clientId", null, "redirectUri");
     }
 
-    @Test(expected = NullPointerException.class)
-    public void shouldValidateRedirectUri() throws Exception
-    {
-        new Configuration("clientId", null, "redirectUri");
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void shouldValidateConnectionTimeout() throws Exception
     {
