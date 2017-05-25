@@ -3,19 +3,10 @@ package com.smartling.connector.yext.sdk;
 import feign.Request;
 import org.apache.commons.lang3.Validate;
 
-public class Configuration
+public class TimeoutConfiguration
 {
-    private final String clientId;
-    private final String clientSecret;
-
-    private int connectTimeoutMillis = 10_000;
-    private int readTimeoutMillis = 60_000;
-
-    public Configuration(final String clientId, final String clientSecret)
-    {
-        this.clientId = Validate.notEmpty(clientId, "ClientId can not be empty");
-        this.clientSecret = Validate.notEmpty(clientSecret, "ClientSecret can not be empty");
-    }
+    protected int connectTimeoutMillis = 10_000;
+    protected int readTimeoutMillis = 60_000;
 
     public Request.Options getOptions()
     {
@@ -46,15 +37,5 @@ public class Configuration
     {
         Validate.inclusiveBetween(0, Integer.MAX_VALUE, value);
         return value;
-    }
-
-    public String getClientId()
-    {
-        return clientId;
-    }
-
-    public String getClientSecret()
-    {
-        return clientSecret;
     }
 }

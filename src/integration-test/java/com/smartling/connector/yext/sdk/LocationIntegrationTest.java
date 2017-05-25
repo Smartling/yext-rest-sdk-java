@@ -15,7 +15,7 @@ public class LocationIntegrationTest extends BaseIntegrationTest
 //    public void testOAuthFlow()
 //    {
 //        String code = "dec38e50f384439e840ca83bc993c5d1";
-//        LoginClient loginClient = new LoginClient(configuration, code);
+//        LoginClient loginClient = new LoginClient(timeoutConfiguration, code);
 //        TokenInfo tokenInfo = loginClient.getTokenInfo();
 //        System.out.println("tokenInfo.getAccessToken()" + tokenInfo.getAccessToken());
 //
@@ -26,7 +26,7 @@ public class LocationIntegrationTest extends BaseIntegrationTest
     @Test
     public void basicIntegrationTest()
     {
-        LocationClient locationClient = new LocationClient(configuration, accessToken);
+        LocationClient locationClient = new LocationClient(timeoutConfiguration, accessToken);
 
         final LocationsResponse locationsResponse = locationClient.searchLocations(50, 0, "main");
         assertThat(locationsResponse).isNotNull();

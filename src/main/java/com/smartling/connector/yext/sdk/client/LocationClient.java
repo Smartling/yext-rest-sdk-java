@@ -1,6 +1,6 @@
 package com.smartling.connector.yext.sdk.client;
 
-import com.smartling.connector.yext.sdk.Configuration;
+import com.smartling.connector.yext.sdk.TimeoutConfiguration;
 import com.smartling.connector.yext.sdk.data.Location;
 import com.smartling.connector.yext.sdk.data.response.LocationProfilesResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationResponse;
@@ -14,9 +14,9 @@ public class LocationClient extends ApiClient
 {
     private LocationApi locationApi;
 
-    public LocationClient(final Configuration configuration, String accessToken)
+    public LocationClient(final TimeoutConfiguration timeoutConfiguration, String accessToken)
     {
-        super(configuration, accessToken);
+        super(timeoutConfiguration, accessToken);
         locationApi = buildApiWithOAuthAuthentication(LocationApi.class, BASE_API_URL);
     }
 
