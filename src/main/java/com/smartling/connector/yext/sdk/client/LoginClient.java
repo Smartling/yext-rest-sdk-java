@@ -13,9 +13,9 @@ public class LoginClient
     private final String redirectUri;
     private final String code;
 
-    public LoginClient(final Configuration configuration, final String redirectUri, final String redirectUri1, final String code)
+    public LoginClient(final Configuration configuration, final String redirectUri, final String code)
     {
-        this.redirectUri = redirectUri1;
+        this.redirectUri = redirectUri;
         this.code = code;
         this.configuration = configuration;
         this.loginApi = buildApi(LoginApi.class, ApiClient.BASE_AUTH_API_URL, configuration);
