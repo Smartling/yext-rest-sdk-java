@@ -7,14 +7,12 @@ public class Configuration
 {
     private final String clientId;
     private final String clientSecret;
-    private final String redirectUri;
 
     private int connectTimeoutMillis = 10_000;
     private int readTimeoutMillis = 60_000;
 
     public Configuration(final String clientId, final String clientSecret, final String redirectUri)
     {
-        this.redirectUri = Validate.notEmpty(redirectUri, "RedirectUri can not be empty");;
         this.clientId = Validate.notEmpty(clientId, "ClientId can not be empty");
         this.clientSecret = Validate.notEmpty(clientSecret, "ClientSecret can not be empty");
     }
@@ -58,10 +56,5 @@ public class Configuration
     public String getClientSecret()
     {
         return clientSecret;
-    }
-
-    public String getRedirectUri()
-    {
-        return redirectUri;
     }
 }

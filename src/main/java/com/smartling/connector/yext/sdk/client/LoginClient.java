@@ -10,10 +10,12 @@ public class LoginClient
 {
     private final LoginApi loginApi;
     private final Configuration configuration;
+    private final String redirectUri;
     private final String code;
 
-    public LoginClient(final Configuration configuration, final String code)
+    public LoginClient(final Configuration configuration, final String redirectUri, final String redirectUri1, final String code)
     {
+        this.redirectUri = redirectUri1;
         this.code = code;
         this.configuration = configuration;
         this.loginApi = buildApi(LoginApi.class, ApiClient.BASE_AUTH_API_URL, configuration);
@@ -21,6 +23,6 @@ public class LoginClient
 
     public TokenInfo getTokenInfo()
     {
-        return loginApi.getTokenInfo(configuration.getClientId(), configuration.getClientSecret(), configuration.getRedirectUri(), "authorization_code" , code);
+        return loginApi.getTokenInfo(configuration.getClientId(), configuration.getClientSecret(), redirectUri, "authorization_code" , code);
     }
 }
