@@ -22,7 +22,7 @@ public class BaseIntegrationTest
         assumeNotNull("userSecret is not specified", userSecret);
         assumeNotNull("accessToken is not specified", accessToken);
 
-        this.configuration = new Configuration(userId, userSecret, "http://smartling.com");
+        this.configuration = new Configuration(userId, userSecret);
     }
 
 }

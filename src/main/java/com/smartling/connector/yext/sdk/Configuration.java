@@ -11,7 +11,7 @@ public class Configuration
     private int connectTimeoutMillis = 10_000;
     private int readTimeoutMillis = 60_000;
 
-    public Configuration(final String clientId, final String clientSecret, final String redirectUri)
+    public Configuration(final String clientId, final String clientSecret)
     {
         this.clientId = Validate.notEmpty(clientId, "ClientId can not be empty");
         this.clientSecret = Validate.notEmpty(clientSecret, "ClientSecret can not be empty");

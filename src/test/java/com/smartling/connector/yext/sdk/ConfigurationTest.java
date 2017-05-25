@@ -12,19 +12,19 @@ public class ConfigurationTest
     @Before
     public void setup()
     {
-        configuration = new Configuration("clientId", "clientSecret", "redirectUri");
+        configuration = new Configuration("clientId", "clientSecret");
     }
 
     @Test(expected = NullPointerException.class)
     public void shouldValidateClientId() throws Exception
     {
-        new Configuration(null, "clientSecret", "redirectUri");
+        new Configuration(null, "clientSecret");
     }
 
     @Test(expected = NullPointerException.class)
     public void shouldValidateClientSecret() throws Exception
     {
-        new Configuration("clientId", null, "redirectUri");
+        new Configuration("clientId", null);
     }
 
     @Test(expected = IllegalArgumentException.class)
