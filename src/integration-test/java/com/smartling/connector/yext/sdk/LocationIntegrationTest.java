@@ -28,7 +28,7 @@ public class LocationIntegrationTest extends BaseIntegrationTest
     {
         LocationClient locationClient = new LocationClient(timeoutConfiguration, accessToken);
 
-        final LocationsResponse locationsResponse = locationClient.searchLocations(50, 0, "main");
+        final LocationsResponse locationsResponse = locationClient.searchLocations(0, 50, "main");
         assertThat(locationsResponse).isNotNull();
         assertThat(locationsResponse.getResponse().getCount()).isGreaterThan(0);
 

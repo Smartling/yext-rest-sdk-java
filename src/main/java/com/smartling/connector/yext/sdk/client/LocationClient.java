@@ -20,7 +20,7 @@ public class LocationClient extends ApiClient
         locationApi = buildApiWithOAuthAuthentication(LocationApi.class, BASE_API_URL);
     }
 
-    public LocationsResponse searchLocations(int limit, int offset, String search)
+    public LocationsResponse searchLocations(int offset, int limit, String search)
     {
         return locationApi.searchLocations(accessToken, generateV(), limit, offset, buildNameFilter(search));
     }
