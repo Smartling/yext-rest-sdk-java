@@ -15,6 +15,7 @@ public class Location
 
     private String tollFreePhone = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private List<String> menuIds = null;
 
     /**
@@ -56,6 +57,7 @@ public class Location
 
     private List<String> degrees = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private List<String> labelIds = null;
 
     private String googlePreferredPhoto = null;
@@ -79,6 +81,7 @@ public class Location
 
     private Double yextWalkableLat = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private List<String> bioListIds = null;
 
     private String facebookPageUrl = null;
@@ -128,6 +131,7 @@ public class Location
 
     private Double yextPickupLng = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private List<String> productListIds = null;
 
     private Object googleCoverPhoto = null;
@@ -235,6 +239,7 @@ public class Location
 
     private String displayAddress = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private List<String> categoryIds = null;
 
     private String productListsLabel = null;
@@ -287,6 +292,7 @@ public class Location
 
     private UberLinkTypeEnum uberLinkType = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private String phone = null;
 
     @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
@@ -304,6 +310,7 @@ public class Location
 
     private List<String> languages = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private LocationType locationType = null;
 
     public enum LocationType
@@ -402,6 +409,7 @@ public class Location
 
     private IntelligentSearchTrackingFrequencyEnum intelligentSearchTrackingFrequency = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private List<String> eventListIds = null;
 
     private Double displayLat = null;
@@ -410,6 +418,7 @@ public class Location
 
     private Double yextDropoffLng = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isPhoneTracked = null;
 
     private String ttyPhone = null;
