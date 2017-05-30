@@ -7,12 +7,14 @@ import java.util.Map;
 
 public class Location
 {
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private String faxPhone = null;
 
     private Object headshot = null;
 
     private List<String> keywords = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private String tollFreePhone = null;
 
     @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
@@ -68,6 +70,7 @@ public class Location
 
     private Double yextDisplayLat = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private String mobilePhone = null;
 
     private Object serviceArea = null;
@@ -142,6 +145,7 @@ public class Location
 
     private Object logo = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private String alternatePhone = null;
 
     private String accountId = null;
@@ -250,6 +254,7 @@ public class Location
 
     private String zip = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private String localPhone = null;
 
     private String orderUrl = null;
@@ -421,6 +426,7 @@ public class Location
     @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isPhoneTracked = null;
 
+    @JsonProperty (access = JsonProperty.Access.WRITE_ONLY)
     private String ttyPhone = null;
 
     private String npi = null;
