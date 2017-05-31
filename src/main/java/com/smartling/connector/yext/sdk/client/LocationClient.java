@@ -7,8 +7,7 @@ import com.smartling.connector.yext.sdk.data.response.LocationResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationsResponse;
 import com.smartling.connector.yext.sdk.rest.api.LocationApi;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import static com.smartling.connector.yext.sdk.utils.RestApiUtils.generateV;
 
 public class LocationClient extends ApiClient
 {
@@ -43,13 +42,6 @@ public class LocationClient extends ApiClient
     public void upsertLocationLanguageProfile(String locationId, String languageCode, Location location)
     {
         locationApi.upsertLanguageProfile(locationId, languageCode, generateV(), accessToken, location);
-    }
-
-    private String generateV()
-    {
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("YYYYMMdd");
-        return format.format(cal.getTime());
     }
 
     private String buildNameFilter(String name)
