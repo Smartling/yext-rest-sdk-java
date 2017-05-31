@@ -5,6 +5,10 @@ import java.util.Calendar;
 
 public final class RestApiUtils {
 
+    public static final String ACCEPT_APPLICATION_JSON = "Accept: application/json";
+
+    public static final String CONTENT_TYPE_APPLICATION_JSON = "Content-Type: application/json";
+
     private RestApiUtils() {
 
     }

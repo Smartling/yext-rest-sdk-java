@@ -1,5 +1,6 @@
 package com.smartling.connector.yext.sdk;
 
+import com.smartling.connector.yext.sdk.client.MenuClient;
 import org.junit.Before;
 
 import static org.junit.Assume.assumeNotNull;
@@ -17,6 +18,10 @@ public class BaseIntegrationTest
         assumeNotNull("accessToken is not specified", accessToken);
 
         this.timeoutConfiguration = new TimeoutConfiguration();
+    }
+
+    public MenuClient menuClient() {
+        return new MenuClient(timeoutConfiguration, accessToken);
     }
 
 }
