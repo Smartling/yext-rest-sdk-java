@@ -41,11 +41,12 @@ public class LocationIntegrationTest extends BaseIntegrationTest
         assertThat(locationProfileResponse.getResponse()).isNotNull();
         assertThat(locationProfileResponse.getResponse().getLanguageProfiles()).isNotNull();
 
-        final LocationResponse locationProfiles = locationClient.getLocationProfile(yextMainLocationId, "de");
+        final LocationResponse locationProfiles = locationClient.getLocationProfile(yextMainLocationId, "en");
         final Location location = locationProfiles.getResponse();
         assertThat(location).isNotNull();
         assertThat(location.getId()).isNotNull();
 
+        location.setLanguage("de");
         location.setFeaturedMessage("Used in integration tests");
         locationClient.upsertLocationLanguageProfile(yextMainLocationId, "de", location);
     }
