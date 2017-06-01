@@ -7,6 +7,7 @@ import com.smartling.connector.yext.sdk.data.response.menu.ListMenus;
 import com.smartling.connector.yext.sdk.data.response.menu.Menu;
 import com.smartling.connector.yext.sdk.data.response.menu.MenuResponse;
 import com.smartling.connector.yext.sdk.data.response.menu.MenusResponse;
+import com.smartling.connector.yext.sdk.utils.JsonUtils;
 import org.junit.Test;
 
 import static com.smartling.connector.yext.sdk.utils.CollectionUtils.first;
@@ -16,28 +17,14 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void createMenu() {
-        MenuClient client = menuClient();
-
-        Menu newMenu = getFirstMenu(client);
-        newMenu.setId(null);
-        generateFields(newMenu);
-
-        IdResponse idResponse = client.createMenu(newMenu);
-        assertThat(idResponse).isNotNull();
-
-        Menu createdMenu = getMenuById(client, idResponse.getIdAsString());
-        assertFields(createdMenu, newMenu);
-
-        // TODO
-        //System.out.println("newMenu " + toJsonString(newMenu));
-        //System.out.println("createdMenu " + toJsonString(createdMenu));
+        createMenu(menuClient());
     }
 
     @Test
     public void updateMenu() {
         MenuClient client = menuClient();
 
-        Menu expectedMenu = getFirstMenu(client);
+        Menu expectedMenu = getOrCreateMenu(client);
 
         String menuId = expectedMenu.getId();
         expectedMenu.setName("updated " + expectedMenu.getName());
@@ -62,8 +49,9 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
     public void getMenuById() {
         MenuClient client = menuClient();
 
-        Menu expected = getFirstMenu(client);
+        Menu expected = getOrCreateMenu(client);
         Menu actual = getMenuById(client, expected.getId());
+        assertThat(actual.getId()).isNotNull();
         assertFields(actual, expected);
 
         // TODO
@@ -72,10 +60,31 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void listMenu() {
-        ListMenus menus = getMenusList(menuClient());
+        getMenusList(menuClient());
+    }
+
+    @Test
+    public void cloneMenuForLanguage() {
+        MenuClient client = menuClient();
+        String menuId = getOrCreateMenu(client).getId();
+
+        Menu srcMenu = getMenuById(client, menuId);
+        srcMenu.setId(null);
+        setNameAndTitle(srcMenu, srcMenu.getTitle() + " cloned for the lang");
+        srcMenu.setLanguage(changeLang(srcMenu.getLanguage()));
+
+        IdResponse idResponse = client.createMenu(srcMenu);
+        Menu destMenu = getMenuById(client, idResponse.getIdAsString());
+        assertFields(destMenu, srcMenu);
+        assertThat(destMenu.getLanguage()).isEqualTo(srcMenu.getLanguage());
 
         // TODO
-        //System.out.println(toJsonString(menus));
+        //System.out.println(toJsonString(srcMenu));
+        //System.out.println(toJsonString(destMenu));
+    }
+
+    private static String changeLang(String prevLang) {
+        return prevLang.equals("en") ? "es" : "en";
     }
 
     private static Menu getMenuById(MenuClient client, String id) {
@@ -89,8 +98,22 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
         return result;
     }
 
-    private static Menu getFirstMenu(MenuClient client) {
-        return first(getMenusList(client).getMenus());
+    private static Menu getOrCreateMenu(MenuClient client) {
+        Menu result = first(getMenusList(client).getMenus());
+        return result == null ? createMenu(client) : result;
+    }
+
+    private static Menu createMenu(MenuClient client) {
+        Menu newMenu = newMenu();
+        generateFields(newMenu);
+
+        IdResponse idResponse = client.createMenu(newMenu);
+        assertThat(idResponse).isNotNull();
+
+        Menu createdMenu = getMenuById(client, idResponse.getIdAsString());
+        assertFields(createdMenu, newMenu);
+
+        return createdMenu;
     }
 
     private static ListMenus getMenusList(MenuClient client) {
@@ -116,12 +139,20 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
 
     private static void generateFields(Menu menu) {
         final String name = generateName();
+        setNameAndTitle(menu, name);
+    }
+
+    private static void setNameAndTitle(Menu menu, String name) {
         menu.setName(name);
         menu.setTitle(name);
     }
 
     private static String generateName() {
         return "test " + System.currentTimeMillis();
+    }
+
+    private static Menu newMenu() {
+        return JsonUtils.fromJsonByClassLoader("json/create_menu.json", Menu.class);
     }
 
     // TODO delete

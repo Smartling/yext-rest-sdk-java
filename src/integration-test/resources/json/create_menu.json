@@ -1,0 +1,49 @@
+{
+  "name": "English Menu #1",
+  "language": "en",
+  "title": "English Menu #1",
+  "publish": true,
+  "accountId": "1429785",
+  "id": null,
+  "size": 2,
+  "currency": "USD",
+  "sections": [
+    {
+      "description": "",
+      "id": "39046098",
+      "name": "",
+      "items": [
+        {
+          "description": null,
+          "id": null,
+          "name": "Item 1",
+          "photo": null,
+          "cost": {
+            "price": null,
+            "other": null,
+            "rangeTo": null,
+            "type": "NONE",
+            "options": null,
+            "unit": null
+          },
+          "calories": null
+        },
+        {
+          "description": null,
+          "id": null,
+          "name": "Item 2",
+          "photo": null,
+          "cost": {
+            "price": null,
+            "other": null,
+            "rangeTo": null,
+            "type": "NONE",
+            "options": null,
+            "unit": null
+          },
+          "calories": null
+        }
+      ]
+    }
+  ]
+}
