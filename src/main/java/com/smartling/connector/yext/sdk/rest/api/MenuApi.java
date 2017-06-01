@@ -1,5 +1,6 @@
 package com.smartling.connector.yext.sdk.rest.api;
 
+import com.smartling.connector.yext.sdk.data.response.EmptyResponse;
 import com.smartling.connector.yext.sdk.data.response.IdResponse;
 import com.smartling.connector.yext.sdk.data.response.menu.Menu;
 import com.smartling.connector.yext.sdk.data.response.menu.MenuResponse;
@@ -28,5 +29,8 @@ public interface MenuApi {
     @Headers(CONTENT_TYPE_APPLICATION_JSON)
     @RequestLine("PUT accounts/me/menus/{menuId}?access_token={access_token}&v={v}")
     MenuResponse updateMenu(@Param("access_token") String accessToken, @Param("v") String v, @Param("menuId") String menuId, Menu menu);
+
+    @RequestLine("DELETE /accounts/me/menus/{menuId}?access_token={access_token}&v={v}")
+    EmptyResponse deleteMenuById(@Param("access_token") String accessToken, @Param("v") String v, @Param("menuId") String menuId);
 
 }

@@ -21,8 +21,8 @@ public class MenuClient extends ApiClient {
         return menuApi.createMenu(accessToken, generateV(), menu);
     }
 
-    public MenuResponse updateMenu(String menuId, Menu menu) {
-        return menuApi.updateMenu(accessToken, generateV(), menuId, menu);
+    public void updateMenu(String menuId, Menu menu) {
+        menuApi.updateMenu(accessToken, generateV(), menuId, menu);
     }
 
     public MenuResponse getMenuById(String menuId) {
@@ -31,6 +31,13 @@ public class MenuClient extends ApiClient {
 
     public MenusResponse listMenu(int offset, int limit) {
         return menuApi.listMenu(accessToken, generateV(), offset, limit);
+    }
+
+    /**
+     * This method throws an exception for HTTP errors.
+     */
+    public void deleteMenuById(String menuId) {
+        menuApi.deleteMenuById(accessToken, generateV(), menuId);
     }
 
 }

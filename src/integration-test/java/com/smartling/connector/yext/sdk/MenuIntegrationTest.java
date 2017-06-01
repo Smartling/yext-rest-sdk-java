@@ -1,23 +1,26 @@
 package com.smartling.connector.yext.sdk;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartling.connector.yext.sdk.client.MenuClient;
 import com.smartling.connector.yext.sdk.data.response.IdResponse;
 import com.smartling.connector.yext.sdk.data.response.menu.ListMenus;
 import com.smartling.connector.yext.sdk.data.response.menu.Menu;
 import com.smartling.connector.yext.sdk.data.response.menu.MenuResponse;
 import com.smartling.connector.yext.sdk.data.response.menu.MenusResponse;
+import com.smartling.connector.yext.sdk.rest.YextRestException;
 import com.smartling.connector.yext.sdk.utils.JsonUtils;
 import org.junit.Test;
 
 import static com.smartling.connector.yext.sdk.utils.CollectionUtils.first;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class MenuIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void createMenu() {
-        createMenu(menuClient());
+        MenuClient client = menuClient();
+        Menu menu = createMenu(client);
+        client.deleteMenuById(menu.getId());
     }
 
     @Test
@@ -25,24 +28,14 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
         MenuClient client = menuClient();
 
         Menu expectedMenu = getOrCreateMenu(client);
-
         String menuId = expectedMenu.getId();
         expectedMenu.setName("updated " + expectedMenu.getName());
         expectedMenu.setTitle("updated " + expectedMenu.getTitle());
 
-        MenuResponse menuResponse = client.updateMenu(menuId, expectedMenu);
-        assertThat(menuResponse).isNotNull();
-        assertThat(menuResponse.getResponse()).isNotNull();
-        // response contains id only
-        assertThat(menuResponse.getResponse().getId()).isEqualTo(menuId);
+        client.updateMenu(menuId, expectedMenu);
 
         Menu actualMenu = getMenuById(client, menuId);
         assertFields(actualMenu, expectedMenu);
-
-        // TODO
-        //System.out.println("menuResponse " + toJsonString(menuResponse.getResponse()));
-        //System.out.println("expectedMenu " + toJsonString(expectedMenu));
-        //System.out.println("actualMenu " + toJsonString(actualMenu));
     }
 
     @Test
@@ -50,17 +43,27 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
         MenuClient client = menuClient();
 
         Menu expected = getOrCreateMenu(client);
+
         Menu actual = getMenuById(client, expected.getId());
         assertThat(actual.getId()).isNotNull();
         assertFields(actual, expected);
-
-        // TODO
-        //System.out.println(toJsonString(actual));
     }
 
     @Test
     public void listMenu() {
         getMenusList(menuClient());
+    }
+
+    @Test
+    public void deleteMenuById() {
+        MenuClient client = menuClient();
+
+        Menu menu = createMenu(client);
+        client.deleteMenuById(menu.getId());
+
+        assertThatThrownBy(() -> client.deleteMenuById(menu.getId()))
+                .isInstanceOf(YextRestException.class)
+                .hasMessageContaining("404");
     }
 
     @Test
@@ -74,13 +77,15 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
         srcMenu.setLanguage(changeLang(srcMenu.getLanguage()));
 
         IdResponse idResponse = client.createMenu(srcMenu);
-        Menu destMenu = getMenuById(client, idResponse.getIdAsString());
-        assertFields(destMenu, srcMenu);
-        assertThat(destMenu.getLanguage()).isEqualTo(srcMenu.getLanguage());
+        Menu clonedMenu = getMenuById(client, idResponse.getIdAsString());
+        assertFields(clonedMenu, srcMenu);
+        assertThat(clonedMenu.getLanguage()).isEqualTo(srcMenu.getLanguage());
+
+        client.deleteMenuById(clonedMenu.getId());
 
         // TODO
-        //System.out.println(toJsonString(srcMenu));
-        //System.out.println(toJsonString(destMenu));
+        //System.out.println(JsonUtils.toJsonString(srcMenu));
+        //System.out.println(JsonUtils.toJsonString(clonedMenu));
     }
 
     private static String changeLang(String prevLang) {
@@ -153,15 +158,6 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
 
     private static Menu newMenu() {
         return JsonUtils.fromJsonByClassLoader("json/create_menu.json", Menu.class);
-    }
-
-    // TODO delete
-    private static <T> String toJsonString(T object) {
-        try {
-            return object == null ? null : new ObjectMapper().writeValueAsString(object);
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
     }
 
 }
