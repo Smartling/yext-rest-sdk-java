@@ -1,6 +1,8 @@
 package com.smartling.connector.yext.sdk;
 
+import com.smartling.connector.yext.sdk.client.LocationClient;
 import com.smartling.connector.yext.sdk.client.MenuClient;
+import com.smartling.connector.yext.sdk.data.Location;
 import com.smartling.connector.yext.sdk.data.response.IdResponse;
 import com.smartling.connector.yext.sdk.data.response.menu.ListMenus;
 import com.smartling.connector.yext.sdk.data.response.menu.Menu;
@@ -10,7 +12,11 @@ import com.smartling.connector.yext.sdk.rest.YextRestException;
 import com.smartling.connector.yext.sdk.utils.JsonUtils;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import static com.smartling.connector.yext.sdk.utils.CollectionUtils.first;
+import static com.smartling.connector.yext.sdk.utils.CollectionUtils.stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -27,7 +33,7 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
     public void updateMenu() {
         MenuClient client = menuClient();
 
-        Menu expectedMenu = getOrCreateMenu(client);
+        Menu expectedMenu = createMenu(client);
         String menuId = expectedMenu.getId();
         expectedMenu.setName("updated " + expectedMenu.getName());
         expectedMenu.setTitle("updated " + expectedMenu.getTitle());
@@ -36,17 +42,21 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
 
         Menu actualMenu = getMenuById(client, menuId);
         assertFields(actualMenu, expectedMenu);
+
+        client.deleteMenuById(expectedMenu.getId());
     }
 
     @Test
     public void getMenuById() {
         MenuClient client = menuClient();
 
-        Menu expected = getOrCreateMenu(client);
+        Menu expected = createMenu(client);
 
         Menu actual = getMenuById(client, expected.getId());
         assertThat(actual.getId()).isNotNull();
         assertFields(actual, expected);
+
+        client.deleteMenuById(expected.getId());
     }
 
     @Test
@@ -67,25 +77,50 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void cloneMenuForLanguage() {
+    public void cloneMenuForLanguage() throws InterruptedException {
         MenuClient client = menuClient();
-        String menuId = getOrCreateMenu(client).getId();
+        LocationClient locationClient = locationClient();
 
-        Menu srcMenu = getMenuById(client, menuId);
+        Menu srcMenu = createMenu(client);
+        String srcMenuId = srcMenu.getId();
+        generateFields(srcMenu);
+
+        Location yextMainLocation = getYextMainLocation(locationClient);
+
+        // update default English profile for English menu
+        locationClient.updateLocationProfileForMenu(yextMainLocation, srcMenu.getId(), srcMenu.getLanguage());
+
+        // to search locations
+        TimeUnit.SECONDS.sleep(1);
+        final int offset = 0;
+        final int limit = 50;
+        List<Location> srcLocations = locationClient.searchLocationsByMenuId(offset, limit, srcMenu.getId())
+                .getResponse().getLocations();
+
+        assertThat(srcLocations).hasSize(1);
+        assertThat(first(srcLocations).getId()).isEqualTo(yextMainLocation.getId());
+
         srcMenu.setId(null);
-        setNameAndTitle(srcMenu, srcMenu.getTitle() + " cloned for the lang");
-        srcMenu.setLanguage(changeLang(srcMenu.getLanguage()));
+        String langCode = changeLang(srcMenu.getLanguage());
+        srcMenu.setLanguage(langCode);
 
-        IdResponse idResponse = client.createMenu(srcMenu);
-        Menu clonedMenu = getMenuById(client, idResponse.getIdAsString());
-        assertFields(clonedMenu, srcMenu);
-        assertThat(clonedMenu.getLanguage()).isEqualTo(srcMenu.getLanguage());
+        String clonedId = client.createMenu(srcMenu).getIdAsString();
 
-        client.deleteMenuById(clonedMenu.getId());
+        stream(srcLocations).forEach(enLocation -> {
+            Location langProfile = locationClient.getLocationProfile(
+                    enLocation.getId(), langCode
+            ).getResponse();
+            locationClient.updateLocationProfileForMenu(langProfile, clonedId, langCode);
+        });
 
-        // TODO
-        //System.out.println(JsonUtils.toJsonString(srcMenu));
-        //System.out.println(JsonUtils.toJsonString(clonedMenu));
+        Location withClonedMenu = locationClient
+                .getLocationProfile(yextMainLocation.getId(), langCode).getResponse();
+
+
+        assertThat(withClonedMenu.getMenuIds()).contains(clonedId);
+
+        client.deleteMenuById(srcMenuId);
+        client.deleteMenuById(clonedId);
     }
 
     private static String changeLang(String prevLang) {
@@ -101,11 +136,6 @@ public class MenuIntegrationTest extends BaseIntegrationTest {
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(id);
         return result;
-    }
-
-    private static Menu getOrCreateMenu(MenuClient client) {
-        Menu result = first(getMenusList(client).getMenus());
-        return result == null ? createMenu(client) : result;
     }
 
     private static Menu createMenu(MenuClient client) {

@@ -4,13 +4,11 @@ import com.smartling.connector.yext.sdk.client.LocationClient;
 import com.smartling.connector.yext.sdk.data.Location;
 import com.smartling.connector.yext.sdk.data.response.LocationProfilesResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationResponse;
-import com.smartling.connector.yext.sdk.data.response.LocationsResponse;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LocationIntegrationTest extends BaseIntegrationTest
-{
+public class LocationIntegrationTest extends BaseIntegrationTest {
 //    @Test
 //    public void testOAuthFlow()
 //    {
@@ -24,15 +22,10 @@ public class LocationIntegrationTest extends BaseIntegrationTest
 //    }
 
     @Test
-    public void basicIntegrationTest()
-    {
-        LocationClient locationClient = new LocationClient(timeoutConfiguration, accessToken);
+    public void basicIntegrationTest() {
+        LocationClient locationClient = locationClient();
 
-        final LocationsResponse locationsResponse = locationClient.searchLocations(0, 50, "main");
-        assertThat(locationsResponse).isNotNull();
-        assertThat(locationsResponse.getResponse().getCount()).isGreaterThan(0);
-
-        String yextMainLocationId = locationsResponse.getResponse().getLocations().get(0).getId();
+        String yextMainLocationId = getYextMainLocation(locationClient).getId();
         final LocationResponse locationResponse = locationClient.getLocationById(yextMainLocationId);
         assertThat(locationResponse.getResponse()).isNotNull();
         assertThat(locationResponse.getResponse().getId()).isNotNull();
@@ -41,12 +34,15 @@ public class LocationIntegrationTest extends BaseIntegrationTest
         assertThat(locationProfileResponse.getResponse()).isNotNull();
         assertThat(locationProfileResponse.getResponse().getLanguageProfiles()).isNotNull();
 
-        final LocationResponse locationProfiles = locationClient.getLocationProfile(yextMainLocationId, "de");
+        final LocationResponse locationProfiles = locationClient.getLocationProfile(yextMainLocationId, "en");
         final Location location = locationProfiles.getResponse();
         assertThat(location).isNotNull();
         assertThat(location.getId()).isNotNull();
 
+        location.setLanguage("de");
         location.setFeaturedMessage("Used in integration tests");
         locationClient.upsertLocationLanguageProfile(yextMainLocationId, "de", location);
     }
+
+
 }
