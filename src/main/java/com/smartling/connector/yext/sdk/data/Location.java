@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Location {
+public class Location
+{
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String faxPhone = null;
 
@@ -22,7 +23,8 @@ public class Location {
     /**
      * Gets or Sets trackingSites
      */
-    public enum TrackingSitesEnum {
+    public enum TrackingSitesEnum
+    {
         GOOGLE_DESKTOP("GOOGLE_DESKTOP"),
 
         GOOGLE_MOBILE("GOOGLE_MOBILE"),
@@ -33,12 +35,14 @@ public class Location {
 
         private String value;
 
-        TrackingSitesEnum(String value) {
+        TrackingSitesEnum(String value)
+        {
             this.value = value;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return String.valueOf(value);
         }
     }
@@ -92,7 +96,8 @@ public class Location {
     /**
      * The gender of the healthcare professional  **NOTE:** This field is only available to locations whose **locationType** is HEALTHCARE_PROFESSIONAL.
      */
-    public enum GenderEnum {
+    public enum GenderEnum
+    {
         FEMALE("FEMALE"),
 
         F("F"),
@@ -105,12 +110,14 @@ public class Location {
 
         private String value;
 
-        GenderEnum(String value) {
+        GenderEnum(String value)
+        {
             this.value = value;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return String.valueOf(value);
         }
     }
@@ -184,7 +191,8 @@ public class Location {
     /**
      * Gets or Sets queryTemplates
      */
-    public enum QueryTemplatesEnum {
+    public enum QueryTemplatesEnum
+    {
         KEYWORD("KEYWORD"),
 
         KEYWORD_ZIP("KEYWORD_ZIP"),
@@ -199,12 +207,14 @@ public class Location {
 
         private String value;
 
-        QueryTemplatesEnum(String value) {
+        QueryTemplatesEnum(String value)
+        {
             this.value = value;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return String.valueOf(value);
         }
     }
@@ -265,19 +275,22 @@ public class Location {
      * Indicates whether the embedded Uber link for this location appears as text or a button  When consumers click on this link on a mobile device, the Uber app (if installed)
      * will open with your location set as the trip destination. If the Uber app is not installed, the consumer will be prompted to download it.
      */
-    public enum UberLinkTypeEnum {
+    public enum UberLinkTypeEnum
+    {
         LINK("LINK"),
 
         BUTTON("BUTTON");
 
         private String value;
 
-        UberLinkTypeEnum(String value) {
+        UberLinkTypeEnum(String value)
+        {
             this.value = value;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return String.valueOf(value);
         }
     }
@@ -305,7 +318,8 @@ public class Location {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private LocationType locationType = null;
 
-    public enum LocationType {
+    public enum LocationType
+    {
 
         LOCATION("LOCATION"),
 
@@ -315,12 +329,14 @@ public class Location {
 
         private String value;
 
-        LocationType(String value) {
+        LocationType(String value)
+        {
             this.value = value;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return String.valueOf(value);
         }
     }
@@ -342,19 +358,22 @@ public class Location {
     /**
      * Gets or Sets locationKeywords
      */
-    public enum LocationKeywordsEnum {
+    public enum LocationKeywordsEnum
+    {
         NAME("NAME"),
 
         PRIMARY_CATEGORY("PRIMARY_CATEGORY");
 
         private String value;
 
-        LocationKeywordsEnum(String value) {
+        LocationKeywordsEnum(String value)
+        {
             this.value = value;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return String.valueOf(value);
         }
     }
@@ -371,7 +390,8 @@ public class Location {
     /**
      * How often we send search queries to track your search performance.
      */
-    public enum IntelligentSearchTrackingFrequencyEnum {
+    public enum IntelligentSearchTrackingFrequencyEnum
+    {
         WEEKLY("WEEKLY"),
 
         MONTHLY("MONTHLY"),
@@ -380,12 +400,14 @@ public class Location {
 
         private String value;
 
-        IntelligentSearchTrackingFrequencyEnum(String value) {
+        IntelligentSearchTrackingFrequencyEnum(String value)
+        {
             this.value = value;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return String.valueOf(value);
         }
     }
@@ -437,1007 +459,1259 @@ public class Location {
      * Convert the given object to string with each line indented by 4 spaces
      * (except the first line).
      */
-    private String toIndentedString(java.lang.Object o) {
-        if (o == null) {
+    private String toIndentedString(java.lang.Object o)
+    {
+        if (o == null)
+        {
             return "null";
         }
         return o.toString().replace("\n", "\n    ");
     }
 
-    public String getFaxPhone() {
+    public String getFaxPhone()
+    {
         return faxPhone;
     }
 
-    public void setFaxPhone(final String faxPhone) {
+    public void setFaxPhone(final String faxPhone)
+    {
         this.faxPhone = faxPhone;
     }
 
-    public Object getHeadshot() {
+    public Object getHeadshot()
+    {
         return headshot;
     }
 
-    public void setHeadshot(final Object headshot) {
+    public void setHeadshot(final Object headshot)
+    {
         this.headshot = headshot;
     }
 
-    public List<String> getKeywords() {
+    public List<String> getKeywords()
+    {
         return keywords;
     }
 
-    public void setKeywords(final List<String> keywords) {
+    public void setKeywords(final List<String> keywords)
+    {
         this.keywords = keywords;
     }
 
-    public String getTollFreePhone() {
+    public String getTollFreePhone()
+    {
         return tollFreePhone;
     }
 
-    public void setTollFreePhone(final String tollFreePhone) {
+    public void setTollFreePhone(final String tollFreePhone)
+    {
         this.tollFreePhone = tollFreePhone;
     }
 
-    public List<String> getMenuIds() {
+    public List<String> getMenuIds()
+    {
         return menuIds;
     }
 
-    public void setMenuIds(final List<String> menuIds) {
+    public void setMenuIds(final List<String> menuIds)
+    {
         this.menuIds = menuIds;
     }
 
-    public List<TrackingSitesEnum> getTrackingSites() {
+    public List<TrackingSitesEnum> getTrackingSites()
+    {
         return trackingSites;
     }
 
-    public void setTrackingSites(final List<TrackingSitesEnum> trackingSites) {
+    public void setTrackingSites(final List<TrackingSitesEnum> trackingSites)
+    {
         this.trackingSites = trackingSites;
     }
 
-    public String getMiddleName() {
+    public String getMiddleName()
+    {
         return middleName;
     }
 
-    public void setMiddleName(final String middleName) {
+    public void setMiddleName(final String middleName)
+    {
         this.middleName = middleName;
     }
 
-    public String getAdditionalHoursText() {
+    public String getAdditionalHoursText()
+    {
         return additionalHoursText;
     }
 
-    public void setAdditionalHoursText(final String additionalHoursText) {
+    public void setAdditionalHoursText(final String additionalHoursText)
+    {
         this.additionalHoursText = additionalHoursText;
     }
 
-    public String getFeaturedMessageUrl() {
+    public String getFeaturedMessageUrl()
+    {
         return featuredMessageUrl;
     }
 
-    public void setFeaturedMessageUrl(final String featuredMessageUrl) {
+    public void setFeaturedMessageUrl(final String featuredMessageUrl)
+    {
         this.featuredMessageUrl = featuredMessageUrl;
     }
 
-    public String getReservationUrl() {
+    public String getReservationUrl()
+    {
         return reservationUrl;
     }
 
-    public void setReservationUrl(final String reservationUrl) {
+    public void setReservationUrl(final String reservationUrl)
+    {
         this.reservationUrl = reservationUrl;
     }
 
-    public List<String> getDegrees() {
+    public List<String> getDegrees()
+    {
         return degrees;
     }
 
-    public void setDegrees(final List<String> degrees) {
+    public void setDegrees(final List<String> degrees)
+    {
         this.degrees = degrees;
     }
 
-    public List<String> getLabelIds() {
+    public List<String> getLabelIds()
+    {
         return labelIds;
     }
 
-    public void setLabelIds(final List<String> labelIds) {
+    public void setLabelIds(final List<String> labelIds)
+    {
         this.labelIds = labelIds;
     }
 
-    public String getGooglePreferredPhoto() {
+    public String getGooglePreferredPhoto()
+    {
         return googlePreferredPhoto;
     }
 
-    public void setGooglePreferredPhoto(final String googlePreferredPhoto) {
+    public void setGooglePreferredPhoto(final String googlePreferredPhoto)
+    {
         this.googlePreferredPhoto = googlePreferredPhoto;
     }
 
-    public List<String> getVideoUrls() {
+    public List<String> getVideoUrls()
+    {
         return videoUrls;
     }
 
-    public void setVideoUrls(final List<String> videoUrls) {
+    public void setVideoUrls(final List<String> videoUrls)
+    {
         this.videoUrls = videoUrls;
     }
 
-    public String getFeaturedMessage() {
+    public String getFeaturedMessage()
+    {
         return featuredMessage;
     }
 
-    public void setFeaturedMessage(final String featuredMessage) {
+    public void setFeaturedMessage(final String featuredMessage)
+    {
         this.featuredMessage = featuredMessage;
     }
 
-    public Double getYextDisplayLat() {
+    public Double getYextDisplayLat()
+    {
         return yextDisplayLat;
     }
 
-    public void setYextDisplayLat(final Double yextDisplayLat) {
+    public void setYextDisplayLat(final Double yextDisplayLat)
+    {
         this.yextDisplayLat = yextDisplayLat;
     }
 
-    public String getMobilePhone() {
+    public String getMobilePhone()
+    {
         return mobilePhone;
     }
 
-    public void setMobilePhone(final String mobilePhone) {
+    public void setMobilePhone(final String mobilePhone)
+    {
         this.mobilePhone = mobilePhone;
     }
 
-    public Object getServiceArea() {
+    public Object getServiceArea()
+    {
         return serviceArea;
     }
 
-    public void setServiceArea(final Object serviceArea) {
+    public void setServiceArea(final Object serviceArea)
+    {
         this.serviceArea = serviceArea;
     }
 
-    public Long getTimestamp() {
+    public Long getTimestamp()
+    {
         return timestamp;
     }
 
-    public void setTimestamp(final Long timestamp) {
+    public void setTimestamp(final Long timestamp)
+    {
         this.timestamp = timestamp;
     }
 
-    public String getAddress2() {
+    public String getAddress2()
+    {
         return address2;
     }
 
-    public void setAddress2(final String address2) {
+    public void setAddress2(final String address2)
+    {
         this.address2 = address2;
     }
 
-    public Object getFacebookCoverPhoto() {
+    public Object getFacebookCoverPhoto()
+    {
         return facebookCoverPhoto;
     }
 
-    public void setFacebookCoverPhoto(final Object facebookCoverPhoto) {
+    public void setFacebookCoverPhoto(final Object facebookCoverPhoto)
+    {
         this.facebookCoverPhoto = facebookCoverPhoto;
     }
 
-    public Double getYextWalkableLat() {
+    public Double getYextWalkableLat()
+    {
         return yextWalkableLat;
     }
 
-    public void setYextWalkableLat(final Double yextWalkableLat) {
+    public void setYextWalkableLat(final Double yextWalkableLat)
+    {
         this.yextWalkableLat = yextWalkableLat;
     }
 
-    public List<String> getBioListIds() {
+    public List<String> getBioListIds()
+    {
         return bioListIds;
     }
 
-    public void setBioListIds(final List<String> bioListIds) {
+    public void setBioListIds(final List<String> bioListIds)
+    {
         this.bioListIds = bioListIds;
     }
 
-    public String getFacebookPageUrl() {
+    public String getFacebookPageUrl()
+    {
         return facebookPageUrl;
     }
 
-    public void setFacebookPageUrl(final String facebookPageUrl) {
+    public void setFacebookPageUrl(final String facebookPageUrl)
+    {
         this.facebookPageUrl = facebookPageUrl;
     }
 
-    public List<String> getEmails() {
+    public List<String> getEmails()
+    {
         return emails;
     }
 
-    public void setEmails(final List<String> emails) {
+    public void setEmails(final List<String> emails)
+    {
         this.emails = emails;
     }
 
-    public Double getWalkableLng() {
+    public Double getWalkableLng()
+    {
         return walkableLng;
     }
 
-    public void setWalkableLng(final Double walkableLng) {
+    public void setWalkableLng(final Double walkableLng)
+    {
         this.walkableLng = walkableLng;
     }
 
-    public GenderEnum getGender() {
+    public GenderEnum getGender()
+    {
         return gender;
     }
 
-    public void setGender(final GenderEnum gender) {
+    public void setGender(final GenderEnum gender)
+    {
         this.gender = gender;
     }
 
-    public String getWebsiteUrl() {
+    public String getWebsiteUrl()
+    {
         return websiteUrl;
     }
 
-    public void setWebsiteUrl(final String websiteUrl) {
+    public void setWebsiteUrl(final String websiteUrl)
+    {
         this.websiteUrl = websiteUrl;
     }
 
-    public List<String> getSpecialties() {
+    public List<String> getSpecialties()
+    {
         return specialties;
     }
 
-    public void setSpecialties(final List<String> specialties) {
+    public void setSpecialties(final List<String> specialties)
+    {
         this.specialties = specialties;
     }
 
-    public String getBioListsLabel() {
+    public String getBioListsLabel()
+    {
         return bioListsLabel;
     }
 
-    public void setBioListsLabel(final String bioListsLabel) {
+    public void setBioListsLabel(final String bioListsLabel)
+    {
         this.bioListsLabel = bioListsLabel;
     }
 
-    public Double getDisplayLng() {
+    public Double getDisplayLng()
+    {
         return displayLng;
     }
 
-    public void setDisplayLng(final Double displayLng) {
+    public void setDisplayLng(final Double displayLng)
+    {
         this.displayLng = displayLng;
     }
 
-    public Double getYextPickupLng() {
+    public Double getYextPickupLng()
+    {
         return yextPickupLng;
     }
 
-    public void setYextPickupLng(final Double yextPickupLng) {
+    public void setYextPickupLng(final Double yextPickupLng)
+    {
         this.yextPickupLng = yextPickupLng;
     }
 
-    public List<String> getProductListIds() {
+    public List<String> getProductListIds()
+    {
         return productListIds;
     }
 
-    public void setProductListIds(final List<String> productListIds) {
+    public void setProductListIds(final List<String> productListIds)
+    {
         this.productListIds = productListIds;
     }
 
-    public Object getGoogleCoverPhoto() {
+    public Object getGoogleCoverPhoto()
+    {
         return googleCoverPhoto;
     }
 
-    public void setGoogleCoverPhoto(final Object googleCoverPhoto) {
+    public void setGoogleCoverPhoto(final Object googleCoverPhoto)
+    {
         this.googleCoverPhoto = googleCoverPhoto;
     }
 
-    public List<Object> getEducationList() {
+    public List<Object> getEducationList()
+    {
         return educationList;
     }
 
-    public void setEducationList(final List<Object> educationList) {
+    public void setEducationList(final List<Object> educationList)
+    {
         this.educationList = educationList;
     }
 
-    public Double getPickupLat() {
+    public Double getPickupLat()
+    {
         return pickupLat;
     }
 
-    public void setPickupLat(final Double pickupLat) {
+    public void setPickupLat(final Double pickupLat)
+    {
         this.pickupLat = pickupLat;
     }
 
-    public Object getLogo() {
+    public Object getLogo()
+    {
         return logo;
     }
 
-    public void setLogo(final Object logo) {
+    public void setLogo(final Object logo)
+    {
         this.logo = logo;
     }
 
-    public String getAlternatePhone() {
+    public String getAlternatePhone()
+    {
         return alternatePhone;
     }
 
-    public void setAlternatePhone(final String alternatePhone) {
+    public void setAlternatePhone(final String alternatePhone)
+    {
         this.alternatePhone = alternatePhone;
     }
 
-    public String getAccountId() {
+    public String getAccountId()
+    {
         return accountId;
     }
 
-    public void setAccountId(final String accountId) {
+    public void setAccountId(final String accountId)
+    {
         this.accountId = accountId;
     }
 
-    public String getMenuUrl() {
+    public String getMenuUrl()
+    {
         return menuUrl;
     }
 
-    public void setMenuUrl(final String menuUrl) {
+    public void setMenuUrl(final String menuUrl)
+    {
         this.menuUrl = menuUrl;
     }
 
-    public Boolean getAcceptingNewPatients() {
+    public Boolean getAcceptingNewPatients()
+    {
         return acceptingNewPatients;
     }
 
-    public void setAcceptingNewPatients(final Boolean acceptingNewPatients) {
+    public void setAcceptingNewPatients(final Boolean acceptingNewPatients)
+    {
         this.acceptingNewPatients = acceptingNewPatients;
     }
 
-    public String getDisplayWebsiteUrl() {
+    public String getDisplayWebsiteUrl()
+    {
         return displayWebsiteUrl;
     }
 
-    public void setDisplayWebsiteUrl(final String displayWebsiteUrl) {
+    public void setDisplayWebsiteUrl(final String displayWebsiteUrl)
+    {
         this.displayWebsiteUrl = displayWebsiteUrl;
     }
 
-    public Double getYextRoutableLng() {
+    public Double getYextRoutableLng()
+    {
         return yextRoutableLng;
     }
 
-    public void setYextRoutableLng(final Double yextRoutableLng) {
+    public void setYextRoutableLng(final Double yextRoutableLng)
+    {
         this.yextRoutableLng = yextRoutableLng;
     }
 
-    public String getState() {
+    public String getState()
+    {
         return state;
     }
 
-    public void setState(final String state) {
+    public void setState(final String state)
+    {
         this.state = state;
     }
 
-    public Boolean getSuppressAddress() {
+    public Boolean getSuppressAddress()
+    {
         return suppressAddress;
     }
 
-    public void setSuppressAddress(final Boolean suppressAddress) {
+    public void setSuppressAddress(final Boolean suppressAddress)
+    {
         this.suppressAddress = suppressAddress;
     }
 
-    public Object getClosed() {
+    public Object getClosed()
+    {
         return closed;
     }
 
-    public void setClosed(final Object closed) {
+    public void setClosed(final Object closed)
+    {
         this.closed = closed;
     }
 
-    public String getDisplayMenuUrl() {
+    public String getDisplayMenuUrl()
+    {
         return displayMenuUrl;
     }
 
-    public void setDisplayMenuUrl(final String displayMenuUrl) {
+    public void setDisplayMenuUrl(final String displayMenuUrl)
+    {
         this.displayMenuUrl = displayMenuUrl;
     }
 
-    public String getOfficeName() {
+    public String getOfficeName()
+    {
         return officeName;
     }
 
-    public void setOfficeName(final String officeName) {
+    public void setOfficeName(final String officeName)
+    {
         this.officeName = officeName;
     }
 
-    public Double getYextDropoffLat() {
+    public Double getYextDropoffLat()
+    {
         return yextDropoffLat;
     }
 
-    public void setYextDropoffLat(final Double yextDropoffLat) {
+    public void setYextDropoffLat(final Double yextDropoffLat)
+    {
         this.yextDropoffLat = yextDropoffLat;
     }
 
-    public String getHours() {
+    public String getHours()
+    {
         return hours;
     }
 
-    public void setHours(final String hours) {
+    public void setHours(final String hours)
+    {
         this.hours = hours;
     }
 
-    public String getAddress() {
+    public String getAddress()
+    {
         return address;
     }
 
-    public void setAddress(final String address) {
+    public void setAddress(final String address)
+    {
         this.address = address;
     }
 
-    public String getUberLink() {
+    public String getUberLink()
+    {
         return uberLink;
     }
 
-    public void setUberLink(final String uberLink) {
+    public void setUberLink(final String uberLink)
+    {
         this.uberLink = uberLink;
     }
 
-    public String getUberClientId() {
+    public String getUberClientId()
+    {
         return uberClientId;
     }
 
-    public void setUberClientId(final String uberClientId) {
+    public void setUberClientId(final String uberClientId)
+    {
         this.uberClientId = uberClientId;
     }
 
-    public Object getFacebookProfilePicture() {
+    public Object getFacebookProfilePicture()
+    {
         return facebookProfilePicture;
     }
 
-    public void setFacebookProfilePicture(final Object facebookProfilePicture) {
+    public void setFacebookProfilePicture(final Object facebookProfilePicture)
+    {
         this.facebookProfilePicture = facebookProfilePicture;
     }
 
-    public List<String> getCertifications() {
+    public List<String> getCertifications()
+    {
         return certifications;
     }
 
-    public void setCertifications(final List<String> certifications) {
+    public void setCertifications(final List<String> certifications)
+    {
         this.certifications = certifications;
     }
 
-    public String getLanguage() {
+    public String getLanguage()
+    {
         return language;
     }
 
-    public void setLanguage(final String language) {
+    public void setLanguage(final String language)
+    {
         this.language = language;
     }
 
-    public String getLastName() {
+    public String getLastName()
+    {
         return lastName;
     }
 
-    public void setLastName(final String lastName) {
+    public void setLastName(final String lastName)
+    {
         this.lastName = lastName;
     }
 
-    public String getLocationName() {
+    public String getLocationName()
+    {
         return locationName;
     }
 
-    public void setLocationName(final String locationName) {
+    public void setLocationName(final String locationName)
+    {
         this.locationName = locationName;
     }
 
-    public List<QueryTemplatesEnum> getQueryTemplates() {
+    public List<QueryTemplatesEnum> getQueryTemplates()
+    {
         return queryTemplates;
     }
 
-    public void setQueryTemplates(final List<QueryTemplatesEnum> queryTemplates) {
+    public void setQueryTemplates(final List<QueryTemplatesEnum> queryTemplates)
+    {
         this.queryTemplates = queryTemplates;
     }
 
-    public List<String> getProducts() {
+    public List<String> getProducts()
+    {
         return products;
     }
 
-    public void setProducts(final List<String> products) {
+    public void setProducts(final List<String> products)
+    {
         this.products = products;
     }
 
-    public String getUberLinkText() {
+    public String getUberLinkText()
+    {
         return uberLinkText;
     }
 
-    public void setUberLinkText(final String uberLinkText) {
+    public void setUberLinkText(final String uberLinkText)
+    {
         this.uberLinkText = uberLinkText;
     }
 
-    public List<Object> getGoogleAttributes() {
+    public List<Object> getGoogleAttributes()
+    {
         return googleAttributes;
     }
 
-    public void setGoogleAttributes(final List<Object> googleAttributes) {
+    public void setGoogleAttributes(final List<Object> googleAttributes)
+    {
         this.googleAttributes = googleAttributes;
     }
 
-    public List<String> getPaymentOptions() {
+    public List<String> getPaymentOptions()
+    {
         return paymentOptions;
     }
 
-    public void setPaymentOptions(final List<String> paymentOptions) {
+    public void setPaymentOptions(final List<String> paymentOptions)
+    {
         this.paymentOptions = paymentOptions;
     }
 
-    public List<String> getCustomKeywords() {
+    public List<String> getCustomKeywords()
+    {
         return customKeywords;
     }
 
-    public void setCustomKeywords(final List<String> customKeywords) {
+    public void setCustomKeywords(final List<String> customKeywords)
+    {
         this.customKeywords = customKeywords;
     }
 
-    public Double getDropoffLng() {
+    public Double getDropoffLng()
+    {
         return dropoffLng;
     }
 
-    public void setDropoffLng(final Double dropoffLng) {
+    public void setDropoffLng(final Double dropoffLng)
+    {
         this.dropoffLng = dropoffLng;
     }
 
-    public Boolean getIntelligentSearchTrackingEnabled() {
+    public Boolean getIntelligentSearchTrackingEnabled()
+    {
         return intelligentSearchTrackingEnabled;
     }
 
-    public void setIntelligentSearchTrackingEnabled(final Boolean intelligentSearchTrackingEnabled) {
+    public void setIntelligentSearchTrackingEnabled(final Boolean intelligentSearchTrackingEnabled)
+    {
         this.intelligentSearchTrackingEnabled = intelligentSearchTrackingEnabled;
     }
 
-    public String getUberEmbedCode() {
+    public String getUberEmbedCode()
+    {
         return uberEmbedCode;
     }
 
-    public void setUberEmbedCode(final String uberEmbedCode) {
+    public void setUberEmbedCode(final String uberEmbedCode)
+    {
         this.uberEmbedCode = uberEmbedCode;
     }
 
-    public String getDisplayReservationUrl() {
+    public String getDisplayReservationUrl()
+    {
         return displayReservationUrl;
     }
 
-    public void setDisplayReservationUrl(final String displayReservationUrl) {
+    public void setDisplayReservationUrl(final String displayReservationUrl)
+    {
         this.displayReservationUrl = displayReservationUrl;
     }
 
-    public Double getYextDisplayLng() {
+    public Double getYextDisplayLng()
+    {
         return yextDisplayLng;
     }
 
-    public void setYextDisplayLng(final Double yextDisplayLng) {
+    public void setYextDisplayLng(final Double yextDisplayLng)
+    {
         this.yextDisplayLng = yextDisplayLng;
     }
 
-    public String getDisplayAddress() {
+    public String getDisplayAddress()
+    {
         return displayAddress;
     }
 
-    public void setDisplayAddress(final String displayAddress) {
+    public void setDisplayAddress(final String displayAddress)
+    {
         this.displayAddress = displayAddress;
     }
 
-    public List<String> getCategoryIds() {
+    public List<String> getCategoryIds()
+    {
         return categoryIds;
     }
 
-    public void setCategoryIds(final List<String> categoryIds) {
+    public void setCategoryIds(final List<String> categoryIds)
+    {
         this.categoryIds = categoryIds;
     }
 
-    public String getProductListsLabel() {
+    public String getProductListsLabel()
+    {
         return productListsLabel;
     }
 
-    public void setProductListsLabel(final String productListsLabel) {
+    public void setProductListsLabel(final String productListsLabel)
+    {
         this.productListsLabel = productListsLabel;
     }
 
-    public String getCity() {
+    public String getCity()
+    {
         return city;
     }
 
-    public void setCity(final String city) {
+    public void setCity(final String city)
+    {
         this.city = city;
     }
 
-    public String getMenusLabel() {
+    public String getMenusLabel()
+    {
         return menusLabel;
     }
 
-    public void setMenusLabel(final String menusLabel) {
+    public void setMenusLabel(final String menusLabel)
+    {
         this.menusLabel = menusLabel;
     }
 
-    public String getZip() {
+    public String getZip()
+    {
         return zip;
     }
 
-    public void setZip(final String zip) {
+    public void setZip(final String zip)
+    {
         this.zip = zip;
     }
 
-    public String getLocalPhone() {
+    public String getLocalPhone()
+    {
         return localPhone;
     }
 
-    public void setLocalPhone(final String localPhone) {
+    public void setLocalPhone(final String localPhone)
+    {
         this.localPhone = localPhone;
     }
 
-    public String getOrderUrl() {
+    public String getOrderUrl()
+    {
         return orderUrl;
     }
 
-    public void setOrderUrl(final String orderUrl) {
+    public void setOrderUrl(final String orderUrl)
+    {
         this.orderUrl = orderUrl;
     }
 
-    public Double getDropoffLat() {
+    public Double getDropoffLat()
+    {
         return dropoffLat;
     }
 
-    public void setDropoffLat(final Double dropoffLat) {
+    public void setDropoffLat(final Double dropoffLat)
+    {
         this.dropoffLat = dropoffLat;
     }
 
-    public List<String> getConditionsTreated() {
+    public List<String> getConditionsTreated()
+    {
         return conditionsTreated;
     }
 
-    public void setConditionsTreated(final List<String> conditionsTreated) {
+    public void setConditionsTreated(final List<String> conditionsTreated)
+    {
         this.conditionsTreated = conditionsTreated;
     }
 
-    public Double getPickupLng() {
+    public Double getPickupLng()
+    {
         return pickupLng;
     }
 
-    public void setPickupLng(final Double pickupLng) {
+    public void setPickupLng(final Double pickupLng)
+    {
         this.pickupLng = pickupLng;
     }
 
-    public Map<String, Object> getCustomFields() {
+    public Map<String, Object> getCustomFields()
+    {
         return customFields;
     }
 
-    public void setCustomFields(final Map<String, Object> customFields) {
+    public void setCustomFields(final Map<String, Object> customFields)
+    {
         this.customFields = customFields;
     }
 
-    public Double getWalkableLat() {
+    public Double getWalkableLat()
+    {
         return walkableLat;
     }
 
-    public void setWalkableLat(final Double walkableLat) {
+    public void setWalkableLat(final Double walkableLat)
+    {
         this.walkableLat = walkableLat;
     }
 
-    public List<String> getInsuranceAccepted() {
+    public List<String> getInsuranceAccepted()
+    {
         return insuranceAccepted;
     }
 
-    public void setInsuranceAccepted(final List<String> insuranceAccepted) {
+    public void setInsuranceAccepted(final List<String> insuranceAccepted)
+    {
         this.insuranceAccepted = insuranceAccepted;
     }
 
-    public UberLinkTypeEnum getUberLinkType() {
+    public UberLinkTypeEnum getUberLinkType()
+    {
         return uberLinkType;
     }
 
-    public void setUberLinkType(final UberLinkTypeEnum uberLinkType) {
+    public void setUberLinkType(final UberLinkTypeEnum uberLinkType)
+    {
         this.uberLinkType = uberLinkType;
     }
 
-    public String getPhone() {
+    public String getPhone()
+    {
         return phone;
     }
 
-    public void setPhone(final String phone) {
+    public void setPhone(final String phone)
+    {
         this.phone = phone;
     }
 
-    public String getFolderId() {
+    public String getFolderId()
+    {
         return folderId;
     }
 
-    public void setFolderId(final String folderId) {
+    public void setFolderId(final String folderId)
+    {
         this.folderId = folderId;
     }
 
-    public Object getGoogleProfilePhoto() {
+    public Object getGoogleProfilePhoto()
+    {
         return googleProfilePhoto;
     }
 
-    public void setGoogleProfilePhoto(final Object googleProfilePhoto) {
+    public void setGoogleProfilePhoto(final Object googleProfilePhoto)
+    {
         this.googleProfilePhoto = googleProfilePhoto;
     }
 
-    public String getInstagramHandle() {
+    public String getInstagramHandle()
+    {
         return instagramHandle;
     }
 
-    public void setInstagramHandle(final String instagramHandle) {
+    public void setInstagramHandle(final String instagramHandle)
+    {
         this.instagramHandle = instagramHandle;
     }
 
-    public String getEventListsLabel() {
+    public String getEventListsLabel()
+    {
         return eventListsLabel;
     }
 
-    public void setEventListsLabel(final String eventListsLabel) {
+    public void setEventListsLabel(final String eventListsLabel)
+    {
         this.eventListsLabel = eventListsLabel;
     }
 
-    public List<Object> getHolidayHours() {
+    public List<Object> getHolidayHours()
+    {
         return holidayHours;
     }
 
-    public void setHolidayHours(final List<Object> holidayHours) {
+    public void setHolidayHours(final List<Object> holidayHours)
+    {
         this.holidayHours = holidayHours;
     }
 
-    public String getFirstName() {
+    public String getFirstName()
+    {
         return firstName;
     }
 
-    public void setFirstName(final String firstName) {
+    public void setFirstName(final String firstName)
+    {
         this.firstName = firstName;
     }
 
-    public List<String> getLanguages() {
+    public List<String> getLanguages()
+    {
         return languages;
     }
 
-    public void setLanguages(final List<String> languages) {
+    public void setLanguages(final List<String> languages)
+    {
         this.languages = languages;
     }
 
-    public LocationType getLocationType() {
+    public LocationType getLocationType()
+    {
         return locationType;
     }
 
-    public void setLocationType(final LocationType locationType) {
+    public void setLocationType(final LocationType locationType)
+    {
         this.locationType = locationType;
     }
 
-    public List<String> getAdmittingHospitals() {
+    public List<String> getAdmittingHospitals()
+    {
         return admittingHospitals;
     }
 
-    public void setAdmittingHospitals(final List<String> admittingHospitals) {
+    public void setAdmittingHospitals(final List<String> admittingHospitals)
+    {
         this.admittingHospitals = admittingHospitals;
     }
 
-    public String getYearEstablished() {
+    public String getYearEstablished()
+    {
         return yearEstablished;
     }
 
-    public void setYearEstablished(final String yearEstablished) {
+    public void setYearEstablished(final String yearEstablished)
+    {
         this.yearEstablished = yearEstablished;
     }
 
-    public Double getYextWalkableLng() {
+    public Double getYextWalkableLng()
+    {
         return yextWalkableLng;
     }
 
-    public void setYextWalkableLng(final Double yextWalkableLng) {
+    public void setYextWalkableLng(final Double yextWalkableLng)
+    {
         this.yextWalkableLng = yextWalkableLng;
     }
 
-    public List<String> getAssociations() {
+    public List<String> getAssociations()
+    {
         return associations;
     }
 
-    public void setAssociations(final List<String> associations) {
+    public void setAssociations(final List<String> associations)
+    {
         this.associations = associations;
     }
 
-    public Double getRoutableLng() {
+    public Double getRoutableLng()
+    {
         return routableLng;
     }
 
-    public void setRoutableLng(final Double routableLng) {
+    public void setRoutableLng(final Double routableLng)
+    {
         this.routableLng = routableLng;
     }
 
-    public String getCountryCode() {
+    public String getCountryCode()
+    {
         return countryCode;
     }
 
-    public void setCountryCode(final String countryCode) {
+    public void setCountryCode(final String countryCode)
+    {
         this.countryCode = countryCode;
     }
 
-    public Double getYextPickupLat() {
+    public Double getYextPickupLat()
+    {
         return yextPickupLat;
     }
 
-    public void setYextPickupLat(final Double yextPickupLat) {
+    public void setYextPickupLat(final Double yextPickupLat)
+    {
         this.yextPickupLat = yextPickupLat;
     }
 
-    public List<LocationKeywordsEnum> getLocationKeywords() {
+    public List<LocationKeywordsEnum> getLocationKeywords()
+    {
         return locationKeywords;
     }
 
-    public void setLocationKeywords(final List<LocationKeywordsEnum> locationKeywords) {
+    public void setLocationKeywords(final List<LocationKeywordsEnum> locationKeywords)
+    {
         this.locationKeywords = locationKeywords;
     }
 
-    public String getGoogleWebsiteOverride() {
+    public String getGoogleWebsiteOverride()
+    {
         return googleWebsiteOverride;
     }
 
-    public void setGoogleWebsiteOverride(final String googleWebsiteOverride) {
+    public void setGoogleWebsiteOverride(final String googleWebsiteOverride)
+    {
         this.googleWebsiteOverride = googleWebsiteOverride;
     }
 
-    public String getId() {
+    public String getId()
+    {
         return id;
     }
 
-    public void setId(final String id) {
+    public void setId(final String id)
+    {
         this.id = id;
     }
 
-    public List<String> getAlternateWebsites() {
+    public List<String> getAlternateWebsites()
+    {
         return alternateWebsites;
     }
 
-    public void setAlternateWebsites(final List<String> alternateWebsites) {
+    public void setAlternateWebsites(final List<String> alternateWebsites)
+    {
         this.alternateWebsites = alternateWebsites;
     }
 
-    public IntelligentSearchTrackingFrequencyEnum getIntelligentSearchTrackingFrequency() {
+    public IntelligentSearchTrackingFrequencyEnum getIntelligentSearchTrackingFrequency()
+    {
         return intelligentSearchTrackingFrequency;
     }
 
-    public void setIntelligentSearchTrackingFrequency(final IntelligentSearchTrackingFrequencyEnum intelligentSearchTrackingFrequency) {
+    public void setIntelligentSearchTrackingFrequency(final IntelligentSearchTrackingFrequencyEnum intelligentSearchTrackingFrequency)
+    {
         this.intelligentSearchTrackingFrequency = intelligentSearchTrackingFrequency;
     }
 
-    public List<String> getEventListIds() {
+    public List<String> getEventListIds()
+    {
         return eventListIds;
     }
 
-    public void setEventListIds(final List<String> eventListIds) {
+    public void setEventListIds(final List<String> eventListIds)
+    {
         this.eventListIds = eventListIds;
     }
 
-    public Double getDisplayLat() {
+    public Double getDisplayLat()
+    {
         return displayLat;
     }
 
-    public void setDisplayLat(final Double displayLat) {
+    public void setDisplayLat(final Double displayLat)
+    {
         this.displayLat = displayLat;
     }
 
-    public List<Object> getCompetitors() {
+    public List<Object> getCompetitors()
+    {
         return competitors;
     }
 
-    public void setCompetitors(final List<Object> competitors) {
+    public void setCompetitors(final List<Object> competitors)
+    {
         this.competitors = competitors;
     }
 
-    public Double getYextDropoffLng() {
+    public Double getYextDropoffLng()
+    {
         return yextDropoffLng;
     }
 
-    public void setYextDropoffLng(final Double yextDropoffLng) {
+    public void setYextDropoffLng(final Double yextDropoffLng)
+    {
         this.yextDropoffLng = yextDropoffLng;
     }
 
-    public Boolean getIsPhoneTracked() {
+    public Boolean getIsPhoneTracked()
+    {
         return isPhoneTracked;
     }
 
-    public void setIsPhoneTracked(final Boolean isPhoneTracked) {
+    public void setIsPhoneTracked(final Boolean isPhoneTracked)
+    {
         this.isPhoneTracked = isPhoneTracked;
     }
 
-    public String getTtyPhone() {
+    public String getTtyPhone()
+    {
         return ttyPhone;
     }
 
-    public void setTtyPhone(final String ttyPhone) {
+    public void setTtyPhone(final String ttyPhone)
+    {
         this.ttyPhone = ttyPhone;
     }
 
-    public String getNpi() {
+    public String getNpi()
+    {
         return npi;
     }
 
-    public void setNpi(final String npi) {
+    public void setNpi(final String npi)
+    {
         this.npi = npi;
     }
 
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 
-    public void setDescription(final String description) {
+    public void setDescription(final String description)
+    {
         this.description = description;
     }
 
-    public String getTwitterHandle() {
+    public String getTwitterHandle()
+    {
         return twitterHandle;
     }
 
-    public void setTwitterHandle(final String twitterHandle) {
+    public void setTwitterHandle(final String twitterHandle)
+    {
         this.twitterHandle = twitterHandle;
     }
 
-    public List<String> getBrands() {
+    public List<String> getBrands()
+    {
         return brands;
     }
 
-    public void setBrands(final List<String> brands) {
+    public void setBrands(final List<String> brands)
+    {
         this.brands = brands;
     }
 
-    public String getUberTripBrandingUrl() {
+    public String getUberTripBrandingUrl()
+    {
         return uberTripBrandingUrl;
     }
 
-    public void setUberTripBrandingUrl(final String uberTripBrandingUrl) {
+    public void setUberTripBrandingUrl(final String uberTripBrandingUrl)
+    {
         this.uberTripBrandingUrl = uberTripBrandingUrl;
     }
 
-    public Double getRoutableLat() {
+    public Double getRoutableLat()
+    {
         return routableLat;
     }
 
-    public void setRoutableLat(final Double routableLat) {
+    public void setRoutableLat(final Double routableLat)
+    {
         this.routableLat = routableLat;
     }
 
-    public Double getYextRoutableLat() {
+    public Double getYextRoutableLat()
+    {
         return yextRoutableLat;
     }
 
-    public void setYextRoutableLat(final Double yextRoutableLat) {
+    public void setYextRoutableLat(final Double yextRoutableLat)
+    {
         this.yextRoutableLat = yextRoutableLat;
     }
 
-    public List<String> getAlternateNames() {
+    public List<String> getAlternateNames()
+    {
         return alternateNames;
     }
 
-    public void setAlternateNames(final List<String> alternateNames) {
+    public void setAlternateNames(final List<String> alternateNames)
+    {
         this.alternateNames = alternateNames;
     }
 
-    public List<Object> getPhotos() {
+    public List<Object> getPhotos()
+    {
         return photos;
     }
 
-    public void setPhotos(final List<Object> photos) {
+    public void setPhotos(final List<Object> photos)
+    {
         this.photos = photos;
     }
 
-    public String getDisplayOrderUrl() {
+    public String getDisplayOrderUrl()
+    {
         return displayOrderUrl;
     }
 
-    public void setDisplayOrderUrl(final String displayOrderUrl) {
+    public void setDisplayOrderUrl(final String displayOrderUrl)
+    {
         this.displayOrderUrl = displayOrderUrl;
     }
 
-    public List<String> getServices() {
+    public List<String> getServices()
+    {
         return services;
     }
 
-    public void setServices(final List<String> services) {
+    public void setServices(final List<String> services)
+    {
         this.services = services;
     }
 
-    public String getSublocality() {
+    public String getSublocality()
+    {
         return sublocality;
     }
 
-    public void setSublocality(final String sublocality) {
+    public void setSublocality(final String sublocality)
+    {
         this.sublocality = sublocality;
     }
 
-    public String getUberTripBrandingText() {
+    public String getUberTripBrandingText()
+    {
         return uberTripBrandingText;
     }
 
-    public void setUberTripBrandingText(final String uberTripBrandingText) {
+    public void setUberTripBrandingText(final String uberTripBrandingText)
+    {
         this.uberTripBrandingText = uberTripBrandingText;
     }
 
-    public Location assureMenus() {
-        if (menuIds == null) {
+    public Location assureMenus()
+    {
+        if (menuIds == null)
+        {
             menuIds = new ArrayList<>();
         }
 
