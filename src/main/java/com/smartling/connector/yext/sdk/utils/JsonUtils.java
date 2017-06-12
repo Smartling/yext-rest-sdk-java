@@ -1,5 +1,6 @@
 package com.smartling.connector.yext.sdk.utils;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URL;
@@ -14,6 +15,7 @@ public final class JsonUtils {
 
     public static <T> String toJsonString(T object) {
         try {
+            MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             return object == null ? null : MAPPER.writeValueAsString(object);
         } catch (Exception ex) {
             throw ExceptionUtils.toRuntimeException(ex);

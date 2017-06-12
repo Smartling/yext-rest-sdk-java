@@ -1,12 +1,10 @@
-package com.smartling.connector.yext.sdk.client;
+package com.smartling.connector.yext.sdk.rest;
 
-import com.smartling.connector.yext.sdk.rest.YextRestAuthenticationException;
-import com.smartling.connector.yext.sdk.rest.YextRestException;
-import com.smartling.connector.yext.sdk.rest.YextRestNotFoundException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,6 +17,8 @@ public class YextRestErrorDecoder implements ErrorDecoder
     @Override
     public Exception decode(final String methodKey, final Response response)
     {
+        LOGGER.debug("Exception during execution of method ", MDC.get("lastRequest"));
+
         String responseBody = bodyAsString(response);
 
         if (response.status() == 401)
@@ -39,7 +39,7 @@ public class YextRestErrorDecoder implements ErrorDecoder
 
     private static String bodyAsString(final Response response)
     {
-        if (response.body()!=null && response.body().length() > 0)
+        if (response != null && response.body() != null && response.body().length() > 0)
         {
             try (BufferedReader reader = new BufferedReader(response.body().asReader()))
             {
