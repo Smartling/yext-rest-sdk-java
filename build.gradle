@@ -53,6 +53,7 @@ dependencies {
     compile "com.netflix.feign:feign-httpclient:$feignVersion"
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'org.slf4j:slf4j-api:1.7.21'
+    compile "ch.qos.logback:logback-classic:1.1.2"
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.0'
     compile 'io.github.openfeign.form:feign-form:2.1.0'
 

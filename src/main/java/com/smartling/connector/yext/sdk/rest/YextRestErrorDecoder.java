@@ -17,8 +17,7 @@ public class YextRestErrorDecoder implements ErrorDecoder
     @Override
     public Exception decode(final String methodKey, final Response response)
     {
-        LOGGER.debug("Exception during execution of method ", MDC.get("lastRequest"));
-
+        LOGGER.debug("Exception during execution of method {}", MDC.get("lastRequest"));
         String responseBody = bodyAsString(response);
 
         if (response.status() == 401)
@@ -39,7 +38,7 @@ public class YextRestErrorDecoder implements ErrorDecoder
 
     private static String bodyAsString(final Response response)
     {
-        if (response != null && response.body() != null && response.body().length() > 0)
+        if (response != null && response.body() != null && response.body().length() !=null && response.body().length() > 0)
         {
             try (BufferedReader reader = new BufferedReader(response.body().asReader()))
             {
