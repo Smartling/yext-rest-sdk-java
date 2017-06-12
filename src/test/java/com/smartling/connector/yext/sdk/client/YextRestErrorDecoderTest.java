@@ -1,6 +1,7 @@
 package com.smartling.connector.yext.sdk.client;
 
 import com.smartling.connector.yext.sdk.rest.YextRestAuthenticationException;
+import com.smartling.connector.yext.sdk.rest.YextRestErrorDecoder;
 import feign.Response;
 import org.junit.Test;
 

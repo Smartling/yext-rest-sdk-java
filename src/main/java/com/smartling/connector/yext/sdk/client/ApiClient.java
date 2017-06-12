@@ -3,6 +3,7 @@ package com.smartling.connector.yext.sdk.client;
 import com.smartling.connector.yext.sdk.OAuthConfiguration;
 import com.smartling.connector.yext.sdk.OAuthRequestInterceptor;
 import com.smartling.connector.yext.sdk.TimeoutConfiguration;
+import com.smartling.connector.yext.sdk.rest.YextRestErrorDecoder;
 import feign.Feign;
 import feign.form.FormEncoder;
 import feign.jackson.JacksonDecoder;
