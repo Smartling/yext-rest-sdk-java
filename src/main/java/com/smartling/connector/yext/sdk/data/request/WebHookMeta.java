@@ -1,6 +1,5 @@
 package com.smartling.connector.yext.sdk.data.request;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class WebHookMeta
@@ -17,7 +16,7 @@ public class WebHookMeta
 
     private String actor;
 
-    @NotBlank
+    @NotNull
     private String appSpecificAccountId;
 
     public WebHookEventType getEventType()
