@@ -9,16 +9,16 @@ import java.util.Map;
 public class Location
 {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String faxPhone = null;
+    private String faxPhone;
 
-    private Object headshot = null;
+    private Headshot headshot;
 
-    private List<String> keywords = null;
+    private List<String> keywords;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String tollFreePhone = null;
+    private String tollFreePhone;
 
-    private List<String> menuIds = null;
+    private List<String> menuIds;
 
     /**
      * Gets or Sets trackingSites
@@ -47,51 +47,51 @@ public class Location
         }
     }
 
-    private List<TrackingSitesEnum> trackingSites = null;
+    private List<TrackingSitesEnum> trackingSites;
 
-    private String middleName = null;
+    private String middleName;
 
-    private String additionalHoursText = null;
+    private String additionalHoursText;
 
-    private String featuredMessageUrl = null;
+    private String featuredMessageUrl;
 
-    private String reservationUrl = null;
+    private String reservationUrl;
 
-    private List<String> degrees = null;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> labelIds = null;
-
-    private String googlePreferredPhoto = null;
-
-    private List<String> videoUrls = null;
-
-    private String featuredMessage = null;
-
-    private Double yextDisplayLat = null;
+    private List<String> degrees;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String mobilePhone = null;
+    private List<String> labelIds;
 
-    private Object serviceArea = null;
+    private String googlePreferredPhoto;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Long timestamp = null;
+    private List<String> videoUrls;
 
-    private String address2 = null;
+    private String featuredMessage;
 
-    private Object facebookCoverPhoto = null;
-
-    private Double yextWalkableLat = null;
+    private Double yextDisplayLat;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> bioListIds = null;
+    private String mobilePhone;
 
-    private String facebookPageUrl = null;
+    private ServiceArea serviceArea;
 
-    private List<String> emails = null;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Long timestamp;
 
-    private Double walkableLng = null;
+    private String address2;
+
+    private FacebookCoverPhoto facebookCoverPhoto;
+
+    private Double yextWalkableLat;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> bioListIds;
+
+    private String facebookPageUrl;
+
+    private List<String> emails;
+
+    private Double walkableLng;
 
     /**
      * The gender of the healthcare professional  **NOTE:** This field is only available to locations whose **locationType** is HEALTHCARE_PROFESSIONAL.
@@ -122,71 +122,71 @@ public class Location
         }
     }
 
-    private GenderEnum gender = null;
+    private GenderEnum gender;
 
-    private String websiteUrl = null;
+    private String websiteUrl;
 
-    private List<String> specialties = null;
+    private List<String> specialties;
 
-    private String bioListsLabel = null;
+    private String bioListsLabel;
 
-    private Double displayLng = null;
+    private Double displayLng;
 
-    private Double yextPickupLng = null;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> productListIds = null;
-
-    private Object googleCoverPhoto = null;
-
-    private List<Object> educationList = null;
-
-    private Double pickupLat = null;
-
-    private Object logo = null;
+    private Double yextPickupLng;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String alternatePhone = null;
+    private List<String> productListIds;
 
-    private String accountId = null;
+    private GoogleCoverPhoto googleCoverPhoto;
 
-    private String menuUrl = null;
+    private List<EducationList> educationList;
 
-    private Boolean acceptingNewPatients = null;
+    private Double pickupLat;
 
-    private String displayWebsiteUrl = null;
+    private Logo logo;
 
-    private Double yextRoutableLng = null;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String alternatePhone;
 
-    private String state = null;
+    private String accountId;
 
-    private Boolean suppressAddress = null;
+    private String menuUrl;
 
-    private Object closed = null;
+    private Boolean acceptingNewPatients;
 
-    private String displayMenuUrl = null;
+    private String displayWebsiteUrl;
 
-    private String officeName = null;
+    private Double yextRoutableLng;
 
-    private Double yextDropoffLat = null;
+    private String state;
 
-    private String hours = null;
+    private Boolean suppressAddress;
 
-    private String address = null;
+    private Object closed;
 
-    private String uberLink = null;
+    private String displayMenuUrl;
 
-    private String uberClientId = null;
+    private String officeName;
 
-    private Object facebookProfilePicture = null;
+    private Double yextDropoffLat;
 
-    private List<String> certifications = null;
+    private String hours;
 
-    private String language = null;
+    private String address;
 
-    private String lastName = null;
+    private String uberLink;
 
-    private String locationName = null;
+    private String uberClientId;
+
+    private FacebookProfilePicture facebookProfilePicture;
+
+    private List<String> certifications;
+
+    private String language;
+
+    private String lastName;
+
+    private String locationName;
 
     /**
      * Gets or Sets queryTemplates
@@ -219,57 +219,57 @@ public class Location
         }
     }
 
-    private List<QueryTemplatesEnum> queryTemplates = null;
+    private List<QueryTemplatesEnum> queryTemplates;
 
-    private List<String> products = null;
+    private List<String> products;
 
-    private String uberLinkText = null;
+    private String uberLinkText;
 
-    private List<Object> googleAttributes = null;
+    private List<Object> googleAttributes;
 
-    private List<String> paymentOptions = null;
+    private List<String> paymentOptions;
 
-    private List<String> customKeywords = null;
+    private List<String> customKeywords;
 
-    private Double dropoffLng = null;
+    private Double dropoffLng;
 
-    private Boolean intelligentSearchTrackingEnabled = null;
+    private Boolean intelligentSearchTrackingEnabled;
 
-    private String uberEmbedCode = null;
+    private String uberEmbedCode;
 
-    private String displayReservationUrl = null;
+    private String displayReservationUrl;
 
-    private Double yextDisplayLng = null;
+    private Double yextDisplayLng;
 
-    private String displayAddress = null;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> categoryIds = null;
-
-    private String productListsLabel = null;
-
-    private String city = null;
-
-    private String menusLabel = null;
-
-    private String zip = null;
+    private String displayAddress;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String localPhone = null;
+    private List<String> categoryIds;
 
-    private String orderUrl = null;
+    private String productListsLabel;
 
-    private Double dropoffLat = null;
+    private String city;
 
-    private List<String> conditionsTreated = null;
+    private String menusLabel;
 
-    private Double pickupLng = null;
+    private String zip;
 
-    private Map<String, Object> customFields = null;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String localPhone;
 
-    private Double walkableLat = null;
+    private String orderUrl;
 
-    private List<String> insuranceAccepted = null;
+    private Double dropoffLat;
+
+    private List<String> conditionsTreated;
+
+    private Double pickupLng;
+
+    private Map<String, Object> customFields;
+
+    private Double walkableLat;
+
+    private List<String> insuranceAccepted;
 
     /**
      * Indicates whether the embedded Uber link for this location appears as text or a button  When consumers click on this link on a mobile device, the Uber app (if installed)
@@ -295,28 +295,28 @@ public class Location
         }
     }
 
-    private UberLinkTypeEnum uberLinkType = null;
+    private UberLinkTypeEnum uberLinkType;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String phone = null;
+    private String phone;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String folderId = null;
+    private String folderId;
 
-    private Object googleProfilePhoto = null;
+    private GoogleProfilePhoto googleProfilePhoto;
 
-    private String instagramHandle = null;
+    private String instagramHandle;
 
-    private String eventListsLabel = null;
+    private String eventListsLabel;
 
-    private List<Object> holidayHours = null;
+    private List<Object> holidayHours;
 
-    private String firstName = null;
+    private String firstName;
 
-    private List<String> languages = null;
+    private List<String> languages;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private LocationType locationType = null;
+    private LocationType locationType;
 
     public enum LocationType
     {
@@ -341,19 +341,19 @@ public class Location
         }
     }
 
-    private List<String> admittingHospitals = null;
+    private List<String> admittingHospitals;
 
-    private String yearEstablished = null;
+    private String yearEstablished;
 
-    private Double yextWalkableLng = null;
+    private Double yextWalkableLng;
 
-    private List<String> associations = null;
+    private List<String> associations;
 
-    private Double routableLng = null;
+    private Double routableLng;
 
-    private String countryCode = null;
+    private String countryCode;
 
-    private Double yextPickupLat = null;
+    private Double yextPickupLat;
 
     /**
      * Gets or Sets locationKeywords
@@ -378,14 +378,14 @@ public class Location
         }
     }
 
-    private List<LocationKeywordsEnum> locationKeywords = null;
+    private List<LocationKeywordsEnum> locationKeywords;
 
-    private String googleWebsiteOverride = null;
+    private String googleWebsiteOverride;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String id = null;
+    private String id;
 
-    private List<String> alternateWebsites = null;
+    private List<String> alternateWebsites;
 
     /**
      * How often we send search queries to track your search performance.
@@ -412,48 +412,51 @@ public class Location
         }
     }
 
-    private IntelligentSearchTrackingFrequencyEnum intelligentSearchTrackingFrequency = null;
+    private IntelligentSearchTrackingFrequencyEnum intelligentSearchTrackingFrequency;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> eventListIds = null;
+    private List<String> eventListIds;
 
-    private Double displayLat = null;
+    private Double displayLat;
 
-    private List<Object> competitors = null;
+    private List<Object> competitors;
 
-    private Double yextDropoffLng = null;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Boolean isPhoneTracked = null;
+    private Double yextDropoffLng;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String ttyPhone = null;
+    private Boolean isPhoneTracked;
 
-    private String npi = null;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String ttyPhone;
 
-    private String description = null;
+    private String npi;
 
-    private String twitterHandle = null;
+    private String description;
 
-    private List<String> brands = null;
+    private String twitterHandle;
 
-    private String uberTripBrandingUrl = null;
+    private List<String> brands;
 
-    private Double routableLat = null;
+    private String uberTripBrandingUrl;
 
-    private Double yextRoutableLat = null;
+    private Double routableLat;
 
-    private List<String> alternateNames = null;
+    private Double yextRoutableLat;
 
-    private List<Object> photos = null;
+    private List<String> alternateNames;
 
-    private String displayOrderUrl = null;
+    private List<Object> photos;
 
-    private List<String> services = null;
+    private String displayOrderUrl;
 
-    private String sublocality = null;
+    private List<String> services;
 
-    private String uberTripBrandingText = null;
+    private String sublocality;
+
+    private String uberTripBrandingText;
+
+    private String uberTripBrandingDescription;
+
 
     /**
      * Convert the given object to string with each line indented by 4 spaces
@@ -478,12 +481,12 @@ public class Location
         this.faxPhone = faxPhone;
     }
 
-    public Object getHeadshot()
+    public Headshot getHeadshot()
     {
         return headshot;
     }
 
-    public void setHeadshot(final Object headshot)
+    public void setHeadshot(final Headshot headshot)
     {
         this.headshot = headshot;
     }
@@ -638,12 +641,12 @@ public class Location
         this.mobilePhone = mobilePhone;
     }
 
-    public Object getServiceArea()
+    public ServiceArea getServiceArea()
     {
         return serviceArea;
     }
 
-    public void setServiceArea(final Object serviceArea)
+    public void setServiceArea(final ServiceArea serviceArea)
     {
         this.serviceArea = serviceArea;
     }
@@ -668,12 +671,12 @@ public class Location
         this.address2 = address2;
     }
 
-    public Object getFacebookCoverPhoto()
+    public FacebookCoverPhoto getFacebookCoverPhoto()
     {
         return facebookCoverPhoto;
     }
 
-    public void setFacebookCoverPhoto(final Object facebookCoverPhoto)
+    public void setFacebookCoverPhoto(final FacebookCoverPhoto facebookCoverPhoto)
     {
         this.facebookCoverPhoto = facebookCoverPhoto;
     }
@@ -798,22 +801,22 @@ public class Location
         this.productListIds = productListIds;
     }
 
-    public Object getGoogleCoverPhoto()
+    public GoogleCoverPhoto getGoogleCoverPhoto()
     {
         return googleCoverPhoto;
     }
 
-    public void setGoogleCoverPhoto(final Object googleCoverPhoto)
+    public void setGoogleCoverPhoto(final GoogleCoverPhoto googleCoverPhoto)
     {
         this.googleCoverPhoto = googleCoverPhoto;
     }
 
-    public List<Object> getEducationList()
+    public List<EducationList> getEducationList()
     {
         return educationList;
     }
 
-    public void setEducationList(final List<Object> educationList)
+    public void setEducationList(final List<EducationList> educationList)
     {
         this.educationList = educationList;
     }
@@ -828,12 +831,12 @@ public class Location
         this.pickupLat = pickupLat;
     }
 
-    public Object getLogo()
+    public Logo getLogo()
     {
         return logo;
     }
 
-    public void setLogo(final Object logo)
+    public void setLogo(final Logo logo)
     {
         this.logo = logo;
     }
@@ -998,12 +1001,12 @@ public class Location
         this.uberClientId = uberClientId;
     }
 
-    public Object getFacebookProfilePicture()
+    public FacebookProfilePicture getFacebookProfilePicture()
     {
         return facebookProfilePicture;
     }
 
-    public void setFacebookProfilePicture(final Object facebookProfilePicture)
+    public void setFacebookProfilePicture(final FacebookProfilePicture facebookProfilePicture)
     {
         this.facebookProfilePicture = facebookProfilePicture;
     }
@@ -1328,12 +1331,12 @@ public class Location
         this.folderId = folderId;
     }
 
-    public Object getGoogleProfilePhoto()
+    public GoogleProfilePhoto getGoogleProfilePhoto()
     {
         return googleProfilePhoto;
     }
 
-    public void setGoogleProfilePhoto(final Object googleProfilePhoto)
+    public void setGoogleProfilePhoto(final GoogleProfilePhoto googleProfilePhoto)
     {
         this.googleProfilePhoto = googleProfilePhoto;
     }
@@ -1706,6 +1709,16 @@ public class Location
     public void setUberTripBrandingText(final String uberTripBrandingText)
     {
         this.uberTripBrandingText = uberTripBrandingText;
+    }
+
+    public String getUberTripBrandingDescription()
+    {
+        return uberTripBrandingDescription;
+    }
+
+    public void setUberTripBrandingDescription(String uberTripBrandingDescription)
+    {
+        this.uberTripBrandingDescription = uberTripBrandingDescription;
     }
 
     public Location assureMenus()
