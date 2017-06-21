@@ -445,7 +445,7 @@ public class Location
 
     private List<String> alternateNames;
 
-    private List<Object> photos;
+    private List<Photo> photos;
 
     private String displayOrderUrl;
 
@@ -1661,12 +1661,12 @@ public class Location
         this.alternateNames = alternateNames;
     }
 
-    public List<Object> getPhotos()
+    public List<Photo> getPhotos()
     {
         return photos;
     }
 
-    public void setPhotos(final List<Object> photos)
+    public void setPhotos(final List<Photo> photos)
     {
         this.photos = photos;
     }
