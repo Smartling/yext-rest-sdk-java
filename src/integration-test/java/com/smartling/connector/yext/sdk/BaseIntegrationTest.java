@@ -1,5 +1,6 @@
 package com.smartling.connector.yext.sdk;
 
+import com.smartling.connector.yext.sdk.client.CustomFieldsClient;
 import com.smartling.connector.yext.sdk.client.LocationClient;
 import com.smartling.connector.yext.sdk.client.MenuClient;
 import com.smartling.connector.yext.sdk.data.Location;
@@ -11,29 +12,39 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 
 
-public class BaseIntegrationTest {
+public class BaseIntegrationTest
+{
 
     private TimeoutConfiguration timeoutConfiguration;
 
     private String accessToken;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         accessToken = System.getProperty("yext.accessToken");
         assertNotNull("accessToken is not specified", accessToken);
 
         this.timeoutConfiguration = new TimeoutConfiguration();
     }
 
-    public MenuClient menuClient() {
+    public MenuClient menuClient()
+    {
         return new MenuClient(timeoutConfiguration, accessToken);
     }
 
-    public LocationClient locationClient() {
+    public LocationClient locationClient()
+    {
         return new LocationClient(timeoutConfiguration, accessToken);
     }
 
-    public static Location getYextMainLocation(LocationClient client) {
+    public CustomFieldsClient customFieldsClient()
+    {
+        return new CustomFieldsClient(timeoutConfiguration, accessToken);
+    }
+
+    public static Location getYextMainLocation(LocationClient client)
+    {
         LocationsResponse locationsResponse = client.searchLocations(0, 50, "main");
         assertThat(locationsResponse).isNotNull();
         assertThat(locationsResponse.getResponse().getCount())

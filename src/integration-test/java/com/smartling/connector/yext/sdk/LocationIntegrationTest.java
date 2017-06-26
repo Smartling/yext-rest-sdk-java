@@ -8,7 +8,8 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LocationIntegrationTest extends BaseIntegrationTest {
+public class LocationIntegrationTest extends BaseIntegrationTest
+{
 //    @Test
 //    public void testOAuthFlow()
 //    {
@@ -22,7 +23,8 @@ public class LocationIntegrationTest extends BaseIntegrationTest {
 //    }
 
     @Test
-    public void basicIntegrationTest() {
+    public void basicIntegrationTest()
+    {
         LocationClient locationClient = locationClient();
 
         String yextMainLocationId = getYextMainLocation(locationClient).getId();
@@ -43,6 +45,5 @@ public class LocationIntegrationTest extends BaseIntegrationTest {
         location.setFeaturedMessage("Used in integration tests");
         locationClient.upsertLocationLanguageProfile(yextMainLocationId, "de", location);
     }
-
 
 }
