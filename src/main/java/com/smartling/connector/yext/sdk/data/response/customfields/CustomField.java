@@ -7,7 +7,30 @@ public class CustomField
 
     private String description;
 
-    private String alternateLanguageBehavior;
+    public enum AlternateLanguageBehavior
+    {
+        PRIMARY_ONLY("PRIMARY_ONLY"),
+
+        OVERRIDABLE("OVERRIDABLE"),
+
+        LANGUAGE_SPECIFIC("LANGUAGE_SPECIFIC");
+
+        private String value;
+
+        AlternateLanguageBehavior(String value)
+        {
+            this.value = value;
+        }
+
+        @Override
+        public String toString()
+        {
+            return String.valueOf(value);
+        }
+
+    }
+
+    private AlternateLanguageBehavior alternateLanguageBehavior;
 
     public enum GroupEnum
     {
@@ -119,12 +142,12 @@ public class CustomField
         this.description = description;
     }
 
-    public String getAlternateLanguageBehavior()
+    public AlternateLanguageBehavior getAlternateLanguageBehavior()
     {
         return alternateLanguageBehavior;
     }
 
-    public void setAlternateLanguageBehavior(String alternateLanguageBehavior)
+    public void setAlternateLanguageBehavior(AlternateLanguageBehavior alternateLanguageBehavior)
     {
         this.alternateLanguageBehavior = alternateLanguageBehavior;
     }
