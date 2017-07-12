@@ -13,6 +13,10 @@ public enum WebHookEventType
 
     MENU_UPDATED,
 
-    MENU_DELETED
+    MENU_DELETED;
+
+    public static boolean isUpdateEvent(WebHookEventType eventType) {
+        return eventType == LOCATION_UPDATED || eventType == MENU_UPDATED;
+    }
 
 }
