@@ -2,7 +2,6 @@ package com.smartling.connector.yext.sdk.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.introspect.Annotated;
@@ -31,7 +30,7 @@ public final class JsonUtils
         return toJsonString(MAPPER, object);
     }
 
-    public static <T> String toJsonStringIgnorePropertyAccess(T object) throws JsonProcessingException
+    public static <T> String toJsonStringIgnorePropertyAccess(T object)
     {
         ObjectMapper mapper = new ObjectMapper();
 
