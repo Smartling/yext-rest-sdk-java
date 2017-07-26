@@ -1,9 +1,11 @@
-package com.smartling.connector.yext.sdk.data.response.menu;
+package com.smartling.connector.yext.sdk.data.response.product;
 
 import com.smartling.connector.yext.sdk.data.ContentListCost;
 import com.smartling.connector.yext.sdk.data.ContentListPhoto;
 
-public class MenuItem
+import java.util.List;
+
+public class ProductItem
 {
 
     private String description;
@@ -12,11 +14,15 @@ public class MenuItem
 
     private String name;
 
-    private ContentListPhoto photo;
+    private String url;
+
+    private List<ContentListPhoto> photos;
+
+    private String idcode;
 
     private ContentListCost cost;
 
-    private Calories calories;
+    private String video;
 
     public String getDescription()
     {
@@ -48,14 +54,34 @@ public class MenuItem
         this.name = name;
     }
 
-    public ContentListPhoto getPhoto()
+    public String getUrl()
     {
-        return photo;
+        return url;
     }
 
-    public void setPhoto(ContentListPhoto photo)
+    public void setUrl(String url)
     {
-        this.photo = photo;
+        this.url = url;
+    }
+
+    public List<ContentListPhoto> getPhotos()
+    {
+        return photos;
+    }
+
+    public void setPhotos(List<ContentListPhoto> photos)
+    {
+        this.photos = photos;
+    }
+
+    public String getIdcode()
+    {
+        return idcode;
+    }
+
+    public void setIdcode(String idcode)
+    {
+        this.idcode = idcode;
     }
 
     public ContentListCost getCost()
@@ -68,14 +94,14 @@ public class MenuItem
         this.cost = cost;
     }
 
-    public Calories getCalories()
+    public String getVideo()
     {
-        return calories;
+        return video;
     }
 
-    public void setCalories(Calories calories)
+    public void setVideo(String video)
     {
-        this.calories = calories;
+        this.video = video;
     }
 
 }

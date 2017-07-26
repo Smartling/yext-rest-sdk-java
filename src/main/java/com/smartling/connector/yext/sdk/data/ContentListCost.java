@@ -1,8 +1,9 @@
-package com.smartling.connector.yext.sdk.data.response.menu;
+package com.smartling.connector.yext.sdk.data;
 
 import java.util.List;
 
-public class ContentListCost {
+public class ContentListCost
+{
 
     private String price;
 
@@ -16,7 +17,8 @@ public class ContentListCost {
 
     private String unit;
 
-    public enum TypeEnum {
+    public enum TypeEnum
+    {
 
         PRICE("PRICE"),
 
@@ -28,61 +30,75 @@ public class ContentListCost {
 
         private String value;
 
-        TypeEnum(String value) {
+        TypeEnum(String value)
+        {
             this.value = value;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return String.valueOf(value);
         }
     }
 
-    public String getPrice() {
+    public String getPrice()
+    {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(String price)
+    {
         this.price = price;
     }
 
-    public String getOther() {
+    public String getOther()
+    {
         return other;
     }
 
-    public void setOther(String other) {
+    public void setOther(String other)
+    {
         this.other = other;
     }
 
-    public String getRangeTo() {
+    public String getRangeTo()
+    {
         return rangeTo;
     }
 
-    public void setRangeTo(String rangeTo) {
+    public void setRangeTo(String rangeTo)
+    {
         this.rangeTo = rangeTo;
     }
 
-    public TypeEnum getType() {
+    public TypeEnum getType()
+    {
         return type;
     }
 
-    public void setType(TypeEnum type) {
+    public void setType(TypeEnum type)
+    {
         this.type = type;
     }
 
-    public List<ContentListCostOption> getOptions() {
+    public List<ContentListCostOption> getOptions()
+    {
         return options;
     }
 
-    public void setOptions(List<ContentListCostOption> options) {
+    public void setOptions(List<ContentListCostOption> options)
+    {
         this.options = options;
     }
 
-    public String getUnit() {
+    public String getUnit()
+    {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(String unit)
+    {
         this.unit = unit;
     }
 

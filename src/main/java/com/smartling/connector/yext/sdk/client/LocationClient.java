@@ -30,6 +30,12 @@ public class LocationClient extends ApiClient
         return locationApi.searchLocations(accessToken, generateV(), limit, offset, searchFilter);
     }
 
+    public LocationsResponse searchLocationsByProductId(int offset, int limit, String productId)
+    {
+        String searchFilter = String.format("[{\"productListIds\":{\"includes\": [\"%s\"]}}]", productId);
+        return locationApi.searchLocations(accessToken, generateV(), limit, offset, searchFilter);
+    }
+
     public LocationResponse getLocationById(String locationId)
     {
         return locationApi.getLocation(locationId, accessToken, generateV());
@@ -48,6 +54,7 @@ public class LocationClient extends ApiClient
     public void upsertLocationLanguageProfile(String locationId, String languageCode, Location location)
     {
         location.setMenuIds(null);
+        location.setProductListIds(null);
         // TODO only for a none primary language profile
         location.setPaymentOptions(null);
         location.setClosed(null);
@@ -57,6 +64,14 @@ public class LocationClient extends ApiClient
     public void updateLocationProfileForMenu(Location locationProfile, String menuId, String languageCode)
     {
         locationProfile.assureMenus().getMenuIds().add(menuId);
+        locationApi.upsertLanguageProfile(
+                locationProfile.getId(), languageCode, generateV(), accessToken, locationProfile
+        );
+    }
+
+    public void updateLocationProfileForProduct(Location locationProfile, String productId, String languageCode)
+    {
+        locationProfile.assureProducts().getProductListIds().add(productId);
         locationApi.upsertLanguageProfile(
                 locationProfile.getId(), languageCode, generateV(), accessToken, locationProfile
         );

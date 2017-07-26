@@ -3,6 +3,7 @@ package com.smartling.connector.yext.sdk;
 import com.smartling.connector.yext.sdk.client.CustomFieldsClient;
 import com.smartling.connector.yext.sdk.client.LocationClient;
 import com.smartling.connector.yext.sdk.client.MenuClient;
+import com.smartling.connector.yext.sdk.client.ProductClient;
 import com.smartling.connector.yext.sdk.data.Location;
 import com.smartling.connector.yext.sdk.data.response.LocationsResponse;
 import org.junit.Before;
@@ -41,6 +42,11 @@ public class BaseIntegrationTest
     public CustomFieldsClient customFieldsClient()
     {
         return new CustomFieldsClient(timeoutConfiguration, accessToken);
+    }
+
+    public ProductClient productClient()
+    {
+        return new ProductClient(timeoutConfiguration, accessToken);
     }
 
     public static Location getYextMainLocation(LocationClient client)

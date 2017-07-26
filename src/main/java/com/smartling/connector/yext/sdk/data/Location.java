@@ -134,7 +134,6 @@ public class Location
 
     private Double yextPickupLng;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<String> productListIds;
 
     private GoogleCoverPhoto googleCoverPhoto;
@@ -1726,6 +1725,16 @@ public class Location
         if (menuIds == null)
         {
             menuIds = new ArrayList<>();
+        }
+
+        return this;
+    }
+
+    public Location assureProducts()
+    {
+        if (productListIds == null)
+        {
+            productListIds = new ArrayList<>();
         }
 
         return this;
