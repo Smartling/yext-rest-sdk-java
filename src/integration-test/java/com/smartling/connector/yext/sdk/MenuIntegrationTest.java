@@ -98,7 +98,7 @@ public class MenuIntegrationTest extends BaseIntegrationTest
         locationClient.updateLocationProfileForMenu(yextMainLocation, srcMenu.getId(), srcMenu.getLanguage());
 
         // to search locations
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(10);
         final int offset = 0;
         final int limit = 50;
         List<Location> srcLocations = locationClient.searchLocationsByMenuId(offset, limit, srcMenu.getId())

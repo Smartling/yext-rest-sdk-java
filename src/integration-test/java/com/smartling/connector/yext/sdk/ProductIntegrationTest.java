@@ -98,7 +98,7 @@ public class ProductIntegrationTest extends BaseIntegrationTest
         locationClient.updateLocationProfileForProduct(yextMainLocation, srcProduct.getId(), srcProduct.getLanguage());
 
         // to search locations, without this delay just updated locations can't be found
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(10);
         final int offset = 0;
         final int limit = 50;
         List<Location> srcLocations = locationClient.searchLocationsByProductId(offset, limit, srcProduct.getId())
