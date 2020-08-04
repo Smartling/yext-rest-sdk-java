@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Build and upload snapshot') {
+        stage('Build and test') {
             agent {
                 label 'master'
             }
@@ -29,16 +29,14 @@ pipeline {
             }
             steps {
                 sh "sudo chmod +x gradlew"
-                withCredentials([
-                        usernamePassword(credentialsId: 'yext-sdk', passwordVariable: 'accessToken'),
-                ]) {
+                withCredentials([usernamePassword(credentialsId: 'yext-sdk', passwordVariable: 'accessToken', usernameVariable: 'userId'), usernamePassword(credentialsId: 'Artifactory file', passwordVariable: 'ci_pass', usernameVariable: 'continuous_integration')]) {
                     sh "./gradlew integrationTest -Dyext.accessToken=${accessToken}"
                     stash 'all'
                 }
             }
             post {
                 always {
-                    junit "**/test-results/integration-test/*.xml"
+                    junit "**/test-results/integrationTest/*.xml"
                 }
             }
         }
