@@ -1,50 +1,38 @@
-project.ext {
-    aspectjVersion = '1.8.10'
-}
-
 buildscript {
     repositories {
-        mavenCentral()
         jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        maven {
-            url "https://maven.eveoh.nl/content/repositories/releases"
-        }
-        dependencies {
-            classpath 'org.hibernate.build.gradle:gradle-maven-publish-auth:2.0.1'
-            classpath 'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.0.2'
-            classpath 'com.netflix.nebula:gradle-info-plugin:2.2.+'
-            classpath 'gradle.plugin.com.palantir.gradle.gitversion:gradle-git-version:0.5.2'
-            classpath "nl.eveoh:gradle-aspectj:1.6"
-        }
+        maven { url "https://artifactory.smartling.net/artifactory/repo" }
+    }
+    dependencies {
+        classpath 'com.smartling.gradle.plugins:sl-maven-upload:20160602.10.g5800337'
+        classpath 'com.smartling.gradle.plugins:sl-encrypted-credentials:20160602.10.g5800337'
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'org.unbroken-dome.test-sets'
-apply plugin: 'maven-publish'
-apply plugin: 'maven-publish-auth'
-apply plugin: 'jacoco'
-apply plugin: 'idea'
-apply plugin: 'nebula.info'
-apply plugin: "com.palantir.git-version"
-apply plugin: 'aspectj'
-
-group = 'com.smartling.connector'
-description = 'Yext REST SDK'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-version buildVersion()
-
-ext {
-    feignVersion = '8.18.0'
+plugins {
+    id 'java'
+    id "org.unbroken-dome.test-sets" version "2.1.1"
+    id 'com.palantir.git-version' version '0.11.0'
 }
+
+apply plugin: 'com.smartling.sl-encrypted-credentials'
+apply plugin: 'com.smartling.sl-maven-upload'
+apply plugin: 'java'
+apply plugin: 'jacoco'
 
 repositories {
     mavenCentral()
+}
+
+group = 'com.smartling.connector'
+description = 'Yext REST SDK'
+version = '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    feignVersion = '8.18.0'
 }
 
 dependencies {
@@ -54,9 +42,10 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile "ch.qos.logback:logback-classic:1.1.2"
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.0'
     compile 'io.github.openfeign.form:feign-form:2.1.0'
     compile 'javax.validation:validation-api:1.1.0.Final'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.0'
 
     testCompile 'org.assertj:assertj-core:3.5.1'
     testCompile 'junit:junit:4.12'
@@ -67,67 +56,45 @@ dependencies {
 
 }
 
-testSets {
-    integrationTest { dirName = 'integration-test' }
+test {
+    testLogging.showStandardStreams = true
+
+    // set heap size for the test JVM(s)
+    minHeapSize = '512m'
+    maxHeapSize = '1024m'
+
+    // Uncomment the following jvmArgs line if you want to use a debugger during tests. It will stop execution on failure, and let you connect.
+    // NOTE: Make sure to put the comment back before you commit!!!
+    //jvmArgs '-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005'
+
+    outputs.upToDateWhen { false }
 }
 
-// workaround to start tests jod with passed system properties
+// workaround to start tests job with passed system properties
 tasks.withType(Test) {
     systemProperties = System.properties
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
+testSets {
+    integrationTest { dirName = 'integration-test' }
+}
+
+task setCredentials {
+    doLast {
+        project.ext.set('mavenCredentials', [
+                'smartling.repository.source.local-overwritable-releases':
+                        [
+                                'username': 'connectors-ci',
+                                'password': "$System.env.ci_pass_releases" //uses jenkins keystore, passed through pipeline using 'withCredentials'
+                        ],
+
+                'smartling.repository.target.snapshots':
+                        [
+                                'username': 'continuous_integration',
+                                'password': "$System.env.ci_pass" //uses jenkins keystore, passed through pipeline using 'withCredentials'
+                        ]
+        ])
     }
-
-    repositories {
-        maven {
-            name 'smartling.repository.target.snapshots'
-            url 'https://artifactory.smartling.net/artifactory/local-releases'
-            credentials {
-                username = project.hasProperty('artifactoryUser') ? project.getProperty('artifactoryUser') : ""
-                password = project.hasProperty('artifactoryPassword') ? project.getProperty('artifactoryPassword') : ""
-            }
-        }
-    }
 }
 
-ext {
-    // CI usually checks a specific revision so we can not rely on project.scminfo.branch
-    branch = project.hasProperty('branch') ? project.getProperty('branch') : project.scminfo.branch
-}
-
-task prepareSonarConfig(type: Copy) {
-    doFirst {
-        logger.info("Current branch is '$branch'")
-    }
-
-    from 'sonar-project.template.properties'
-    into '.'
-
-    rename { String fileName ->
-        fileName.replace('.template', '')
-    }
-
-    // Want to support both plain "master" and full-qualified "refs/origin/master"
-    expand(analysisMode: branch == 'master' || branch.endsWith('/master') ? 'publish' : 'preview')
-}
-
-def buildVersion() {
-    def details = versionDetails();
-    def patchNumber = details.commitDistance
-    def buildNumber = project.hasProperty('buildNumber') ? project.getProperty('buildNumber') : null;
-
-    def suffix = buildNumber != null                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ? '.' + patchNumber + '-' + buildNumber + '-' + details.gitHash                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          : '.' + (patchNumber + 1) + '-SNAPSHOT'
-
-    return details.lastTag - '.dirty' + suffix;
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.14'
-}
+uploadArchives.dependsOn setCredentials

@@ -5,7 +5,7 @@ import java.util.List;
 public class CustomField
 {
 
-    private String description;
+    private TranslatableValue description;
 
     public enum AlternateLanguageBehavior
     {
@@ -73,7 +73,7 @@ public class CustomField
 
     private GroupEnum group;
 
-    private String name;
+    private TranslatableValue name;
 
     private List<CustomOption> options;
 
@@ -84,6 +84,8 @@ public class CustomField
 
         BOOLEAN("BOOLEAN"),
 
+        CTA("CTA"),
+
         DAILY_TIMES("DAILY_TIMES"),
 
         DATE("DATE"),
@@ -92,6 +94,8 @@ public class CustomField
 
         HOURS("HOURS"),
 
+        ENTITY_LIST("ENTITY_LIST"),
+
         MULTILINE_TEXT("MULTILINE_TEXT"),
 
         MULTI_OPTION("MULTI_OPTION"),
@@ -99,6 +103,8 @@ public class CustomField
         NUMBER("NUMBER"),
 
         PHOTO("PHOTO"),
+
+        RICH_TEXT("RICH_TEXT"),
 
         SINGLE_OPTION("SINGLE_OPTION"),
 
@@ -110,9 +116,7 @@ public class CustomField
 
         VIDEO("VIDEO"),
 
-        VIDEO_GALLERY("VIDEO_GALLERY"),
-
-        LOCATION_LIST("LOCATION_LIST");
+        VIDEO_GALLERY("VIDEO_GALLERY");
 
         private String value;
 
@@ -132,12 +136,12 @@ public class CustomField
 
     private String id;
 
-    public String getDescription()
+    public TranslatableValue getDescription()
     {
         return description;
     }
 
-    public void setDescription(String description)
+    public void setDescription(TranslatableValue description)
     {
         this.description = description;
     }
@@ -162,12 +166,12 @@ public class CustomField
         this.group = group;
     }
 
-    public String getName()
+    public TranslatableValue getName()
     {
         return name;
     }
 
-    public void setName(String name)
+    public void setName(TranslatableValue name)
     {
         this.name = name;
     }
