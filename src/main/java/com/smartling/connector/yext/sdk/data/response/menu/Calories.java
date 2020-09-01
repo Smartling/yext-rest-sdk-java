@@ -1,5 +1,10 @@
 package com.smartling.connector.yext.sdk.data.response.menu;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Calories {
 
     private Integer calorie;
@@ -25,30 +30,5 @@ public class Calories {
             return String.valueOf(value);
         }
     }
-
-    public Integer getCalorie() {
-        return calorie;
-    }
-
-    public void setCalorie(Integer calorie) {
-        this.calorie = calorie;
-    }
-
-    public Integer getRangeTo() {
-        return rangeTo;
-    }
-
-    public void setRangeTo(Integer rangeTo) {
-        this.rangeTo = rangeTo;
-    }
-
-    public TypeEnum getType() {
-        return type;
-    }
-
-    public void setType(TypeEnum type) {
-        this.type = type;
-    }
-
 }
 

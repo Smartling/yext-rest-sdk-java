@@ -1,7 +1,12 @@
 package com.smartling.connector.yext.sdk.data.response.customfields;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class CustomField
 {
 
@@ -135,86 +140,5 @@ public class CustomField
     private TypeEnum type;
 
     private String id;
-
-    public TranslatableValue getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(TranslatableValue description)
-    {
-        this.description = description;
-    }
-
-    public AlternateLanguageBehavior getAlternateLanguageBehavior()
-    {
-        return alternateLanguageBehavior;
-    }
-
-    public void setAlternateLanguageBehavior(AlternateLanguageBehavior alternateLanguageBehavior)
-    {
-        this.alternateLanguageBehavior = alternateLanguageBehavior;
-    }
-
-    public GroupEnum getGroup()
-    {
-        return group;
-    }
-
-    public void setGroup(GroupEnum group)
-    {
-        this.group = group;
-    }
-
-    public TranslatableValue getName()
-    {
-        return name;
-    }
-
-    public void setName(TranslatableValue name)
-    {
-        this.name = name;
-    }
-
-    public List<CustomOption> getOptions()
-    {
-        return options;
-    }
-
-    public void setOptions(List<CustomOption> options)
-    {
-        this.options = options;
-    }
-
-    public CustomValidation getValidation()
-    {
-        return validation;
-    }
-
-    public void setValidation(CustomValidation validation)
-    {
-        this.validation = validation;
-    }
-
-    public TypeEnum getType()
-    {
-        return type;
-    }
-
-    public void setType(TypeEnum type)
-    {
-        this.type = type;
-    }
-
-    public String getId()
-    {
-        return id;
-    }
-
-    public void setId(String id)
-    {
-        this.id = id;
-    }
-
 }
 

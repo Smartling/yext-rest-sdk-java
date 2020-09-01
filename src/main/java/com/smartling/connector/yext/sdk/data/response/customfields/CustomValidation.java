@@ -1,10 +1,14 @@
 package com.smartling.connector.yext.sdk.data.response.customfields;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 
+@Data
+@NoArgsConstructor
 public class CustomValidation
 {
-
     private String maxDate;
 
     private Integer minHeight;
@@ -65,116 +69,5 @@ public class CustomValidation
     private AspectRatioEnum aspectRatio;
 
     private String minDate;
-
-    public String getMaxDate()
-    {
-        return maxDate;
-    }
-
-    public void setMaxDate(String maxDate)
-    {
-        this.maxDate = maxDate;
-    }
-
-    public Integer getMinHeight()
-    {
-        return minHeight;
-    }
-
-    public void setMinHeight(Integer minHeight)
-    {
-        this.minHeight = minHeight;
-    }
-
-    public BigDecimal getMaxValue()
-    {
-        return maxValue;
-    }
-
-    public void setMaxValue(BigDecimal maxValue)
-    {
-        this.maxValue = maxValue;
-    }
-
-    public BigDecimal getMinValue()
-    {
-        return minValue;
-    }
-
-    public void setMinValue(BigDecimal minValue)
-    {
-        this.minValue = minValue;
-    }
-
-    public Integer getMinWidth()
-    {
-        return minWidth;
-    }
-
-    public void setMinWidth(Integer minWidth)
-    {
-        this.minWidth = minWidth;
-    }
-
-    public Integer getMinCharLength()
-    {
-        return minCharLength;
-    }
-
-    public void setMinCharLength(Integer minCharLength)
-    {
-        this.minCharLength = minCharLength;
-    }
-
-    public Integer getMaxItemCount()
-    {
-        return maxItemCount;
-    }
-
-    public void setMaxItemCount(Integer maxItemCount)
-    {
-        this.maxItemCount = maxItemCount;
-    }
-
-    public Integer getMinItemCount()
-    {
-        return minItemCount;
-    }
-
-    public void setMinItemCount(Integer minItemCount)
-    {
-        this.minItemCount = minItemCount;
-    }
-
-    public Integer getMaxCharLength()
-    {
-        return maxCharLength;
-    }
-
-    public void setMaxCharLength(Integer maxCharLength)
-    {
-        this.maxCharLength = maxCharLength;
-    }
-
-    public AspectRatioEnum getAspectRatio()
-    {
-        return aspectRatio;
-    }
-
-    public void setAspectRatio(AspectRatioEnum aspectRatio)
-    {
-        this.aspectRatio = aspectRatio;
-    }
-
-    public String getMinDate()
-    {
-        return minDate;
-    }
-
-    public void setMinDate(String minDate)
-    {
-        this.minDate = minDate;
-    }
-
 }
 

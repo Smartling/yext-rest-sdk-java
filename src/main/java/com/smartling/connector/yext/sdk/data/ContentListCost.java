@@ -1,7 +1,12 @@
 package com.smartling.connector.yext.sdk.data;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class ContentListCost
 {
 
@@ -41,66 +46,5 @@ public class ContentListCost
             return String.valueOf(value);
         }
     }
-
-    public String getPrice()
-    {
-        return price;
-    }
-
-    public void setPrice(String price)
-    {
-        this.price = price;
-    }
-
-    public String getOther()
-    {
-        return other;
-    }
-
-    public void setOther(String other)
-    {
-        this.other = other;
-    }
-
-    public String getRangeTo()
-    {
-        return rangeTo;
-    }
-
-    public void setRangeTo(String rangeTo)
-    {
-        this.rangeTo = rangeTo;
-    }
-
-    public TypeEnum getType()
-    {
-        return type;
-    }
-
-    public void setType(TypeEnum type)
-    {
-        this.type = type;
-    }
-
-    public List<ContentListCostOption> getOptions()
-    {
-        return options;
-    }
-
-    public void setOptions(List<ContentListCostOption> options)
-    {
-        this.options = options;
-    }
-
-    public String getUnit()
-    {
-        return unit;
-    }
-
-    public void setUnit(String unit)
-    {
-        this.unit = unit;
-    }
-
 }
 

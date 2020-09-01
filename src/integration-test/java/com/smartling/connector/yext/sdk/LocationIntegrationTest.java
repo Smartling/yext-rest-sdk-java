@@ -2,7 +2,8 @@ package com.smartling.connector.yext.sdk;
 
 import com.google.common.collect.Maps;
 import com.smartling.connector.yext.sdk.client.LocationClient;
-import com.smartling.connector.yext.sdk.data.Location;
+import com.smartling.connector.yext.sdk.data.response.location.FeaturedMessage;
+import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.data.response.LocationProfilesResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationResponse;
 import com.smartling.connector.yext.sdk.utils.JsonUtils;
@@ -33,22 +34,23 @@ public class LocationIntegrationTest extends BaseIntegrationTest
     {
         LocationClient locationClient = locationClient();
 
-        String yextMainLocationId = getYextMainLocation(locationClient).getId();
+        String yextMainLocationId = getYextMainLocation(locationClient).getMeta().getId();
         final LocationResponse locationResponse = locationClient.getLocationById(yextMainLocationId);
         assertThat(locationResponse.getResponse()).isNotNull();
-        assertThat(locationResponse.getResponse().getId()).isNotNull();
+        assertThat(locationResponse.getResponse().getMeta().getId()).isNotNull();
 
         final LocationProfilesResponse locationProfileResponse = locationClient.listLocationProfile(yextMainLocationId);
         assertThat(locationProfileResponse.getResponse()).isNotNull();
-        assertThat(locationProfileResponse.getResponse().getLanguageProfiles()).isNotNull();
+        assertThat(locationProfileResponse.getResponse().getProfiles()).isNotNull();
 
         final LocationResponse locationProfiles = locationClient.getLocationProfile(yextMainLocationId, "en");
         final Location location = locationProfiles.getResponse();
         assertThat(location).isNotNull();
-        assertThat(location.getId()).isNotNull();
+        assertThat(location.getMeta().getId()).isNotNull();
 
-        location.setLanguage("de");
-        location.setFeaturedMessage("Used in integration tests");
+        location.setFeaturedMessage(new FeaturedMessage("Used in integration tests", null));
+        location.getCustomFields().remove("c_textList", "textList");
+
         locationClient.upsertLocationLanguageProfile(yextMainLocationId, "de", location);
     }
 
@@ -86,7 +88,7 @@ public class LocationIntegrationTest extends BaseIntegrationTest
 
         locationEs.setCustomFields(fields);
 
-        locationClient.upsertLocationLanguageProfile(locationPrimary.getId(), "es", locationEs);
+        locationClient.upsertLocationLanguageProfile(locationPrimary.getMeta().getId(), "es", locationEs);
     }
 
 }

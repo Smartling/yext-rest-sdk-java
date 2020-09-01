@@ -26,19 +26,21 @@ repositories {
 
 group = 'com.smartling.connector'
 description = 'Yext REST SDK'
-version = '2.0.0-SNAPSHOT'
+version = '3.0.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 ext {
-    feignVersion = '8.18.0'
+    openfeignVersion = '10.7.4'
+    lombokVersion = '1.18.12'
 }
 
 dependencies {
-    compile "com.netflix.feign:feign-core:$feignVersion"
-    compile "com.netflix.feign:feign-jackson:$feignVersion"
-    compile "com.netflix.feign:feign-httpclient:$feignVersion"
+    compile "io.github.openfeign:feign-core:${openfeignVersion}"
+    compile "io.github.openfeign:feign-jackson:${openfeignVersion}"
+    compile "io.github.openfeign:feign-httpclient:${openfeignVersion}"
+
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile "ch.qos.logback:logback-classic:1.1.2"
@@ -46,6 +48,12 @@ dependencies {
     compile 'javax.validation:validation-api:1.1.0.Final'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.0'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.6.0'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+
 
     testCompile 'org.assertj:assertj-core:3.5.1'
     testCompile 'junit:junit:4.12'

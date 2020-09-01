@@ -1,6 +1,5 @@
 package com.smartling.connector.yext.sdk.rest.api;
 
-import com.smartling.connector.yext.sdk.data.response.EmptyResponse;
 import com.smartling.connector.yext.sdk.data.response.IdResponse;
 import com.smartling.connector.yext.sdk.data.response.product.Product;
 import com.smartling.connector.yext.sdk.data.response.product.ProductResponse;
@@ -41,7 +40,7 @@ public interface ProductApi
                                   Product product);
 
     @RequestLine("DELETE /accounts/me/products/{productId}?access_token={access_token}&v={v}")
-    EmptyResponse deleteProductById(@Param("access_token") String accessToken,
+    void deleteProductById(@Param("access_token") String accessToken,
                                     @Param("v") String v,
                                     @Param("productId") String productId);
 

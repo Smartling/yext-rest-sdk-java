@@ -1,11 +1,14 @@
 package com.smartling.connector.yext.sdk.client;
 
 import com.smartling.connector.yext.sdk.TimeoutConfiguration;
-import com.smartling.connector.yext.sdk.data.Location;
+import com.smartling.connector.yext.sdk.data.response.location.EntityLink;
+import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.data.response.LocationProfilesResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationsResponse;
 import com.smartling.connector.yext.sdk.rest.api.LocationApi;
+
+import java.util.ArrayList;
 
 import static com.smartling.connector.yext.sdk.utils.RestApiUtils.generateV;
 
@@ -26,13 +29,13 @@ public class LocationClient extends ApiClient
 
     public LocationsResponse searchLocationsByMenuId(int offset, int limit, String menuId)
     {
-        String searchFilter = String.format("[{\"menuIds\":{\"includes\": [\"%s\"]}}]", menuId);
+        String searchFilter = String.format("{\"menus.ids\":{\"$in\":[\"%s\"]}}", menuId);
         return locationApi.searchLocations(accessToken, generateV(), limit, offset, searchFilter);
     }
 
     public LocationsResponse searchLocationsByProductId(int offset, int limit, String productId)
     {
-        String searchFilter = String.format("[{\"productListIds\":{\"includes\": [\"%s\"]}}]", productId);
+        String searchFilter = String.format("{\"productLists.ids\":{\"$in\":[\"%s\"]}}", productId);
         return locationApi.searchLocations(accessToken, generateV(), limit, offset, searchFilter);
     }
 
@@ -43,18 +46,18 @@ public class LocationClient extends ApiClient
 
     public LocationProfilesResponse listLocationProfile(String locationId)
     {
-        return locationApi.listLocationProfiles(locationId, accessToken, generateV());
+        return locationApi.listLanguageProfiles(locationId, accessToken, generateV());
     }
 
     public LocationResponse getLocationProfile(String locationId, String languageCode)
     {
-        return locationApi.getLocationProfile(locationId, accessToken, generateV(), languageCode);
+        return locationApi.getLanguageProfile(locationId, accessToken, generateV(), languageCode);
     }
 
     public void upsertLocationLanguageProfile(String locationId, String languageCode, Location location)
     {
-        location.setMenuIds(null);
-        location.setProductListIds(null);
+        location.setMenus(null);
+        location.setProductLists(null);
         // TODO only for a none primary language profile
         location.setPaymentOptions(null);
         location.setClosed(null);
@@ -63,27 +66,38 @@ public class LocationClient extends ApiClient
 
     public void updateLocationProfileForMenu(Location locationProfile, String menuId, String languageCode)
     {
-        locationProfile.assureMenus().getMenuIds().add(menuId);
+        if (locationProfile.getMenus() == null)
+        {
+            locationProfile.setMenus(new EntityLink());
+        }
+        if (locationProfile.getMenus().getIds() == null)
+        {
+            locationProfile.getMenus().setIds(new ArrayList<>());
+        }
+        locationProfile.getMenus().getIds().add(menuId);
         locationApi.upsertLanguageProfile(
-                locationProfile.getId(), languageCode, generateV(), accessToken, locationProfile
+                locationProfile.getMeta().getId(), languageCode, generateV(), accessToken, locationProfile
         );
     }
 
     public void updateLocationProfileForProduct(Location locationProfile, String productId, String languageCode)
     {
-        locationProfile.assureProducts().getProductListIds().add(productId);
+        if (locationProfile.getProductLists() == null)
+        {
+            locationProfile.setProductLists(new EntityLink());
+        }
+        if (locationProfile.getProductLists().getIds() == null)
+        {
+            locationProfile.getProductLists().setIds(new ArrayList<>());
+        }
+        locationProfile.getProductLists().getIds().add(productId);
         locationApi.upsertLanguageProfile(
-                locationProfile.getId(), languageCode, generateV(), accessToken, locationProfile
+                locationProfile.getMeta().getId(), languageCode, generateV(), accessToken, locationProfile
         );
-    }
-
-    public void updateLocation(String locationId, Location location)
-    {
-        locationApi.updateLocation(locationId, generateV(), accessToken, location);
     }
 
     private String buildNameFilter(String name)
     {
-        return String.format("[{\"name\": {\"contains\": [\"%s\"]}}]", name);
+        return String.format("{\"name\": {\"$contains\": \"%s\"}}", name);
     }
 }
