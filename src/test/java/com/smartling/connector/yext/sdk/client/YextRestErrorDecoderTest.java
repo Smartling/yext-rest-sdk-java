@@ -16,7 +16,11 @@ public class YextRestErrorDecoderTest
     @Test
     public void shouldReturnAuthenticationExceptionFor401() throws Exception
     {
-        Response response = Response.create(401, "Unauthorized", Collections.emptyMap(), new byte[0]);
+        Response response = Response.builder()
+                .status(401)
+                .reason("Unauthorized")
+                .body(new byte[0])
+                .build();
 
         Exception exception = testedInstance.decode("", response);
 
