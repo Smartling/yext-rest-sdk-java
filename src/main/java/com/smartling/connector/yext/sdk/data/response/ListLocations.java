@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ListLocales
+public class ListLocations
 {
     private Integer count;
     private List<Location> entities;
