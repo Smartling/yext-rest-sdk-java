@@ -24,5 +24,7 @@ public class Meta
     private List<Object> labels = new ArrayList<>();
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String language;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String timestamp;
     private String uid;
 }
