@@ -1,31 +1,17 @@
 package com.smartling.connector.yext.sdk.data.response;
 
-import com.smartling.connector.yext.sdk.data.Location;
+import com.smartling.connector.yext.sdk.data.response.location.Location;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ListLocations
 {
     private Integer count;
-    private List<Location> locations;
-
-    public Integer getCount()
-    {
-        return count;
-    }
-
-    public void setCount(final Integer count)
-    {
-        this.count = count;
-    }
-
-    public List<Location> getLocations()
-    {
-        return locations;
-    }
-
-    public void setLocations(final List<Location> locations)
-    {
-        this.locations = locations;
-    }
+    private List<Location> entities;
 }

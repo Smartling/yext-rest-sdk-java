@@ -2,7 +2,7 @@ package com.smartling.connector.yext.sdk;
 
 import com.smartling.connector.yext.sdk.client.LocationClient;
 import com.smartling.connector.yext.sdk.client.ProductClient;
-import com.smartling.connector.yext.sdk.data.Location;
+import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.data.response.IdResponse;
 import com.smartling.connector.yext.sdk.data.response.product.ListProducts;
 import com.smartling.connector.yext.sdk.data.response.product.Product;
@@ -98,14 +98,14 @@ public class ProductIntegrationTest extends BaseIntegrationTest
         locationClient.updateLocationProfileForProduct(yextMainLocation, srcProduct.getId(), srcProduct.getLanguage());
 
         // to search locations, without this delay just updated locations can't be found
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(10);
         final int offset = 0;
         final int limit = 50;
         List<Location> srcLocations = locationClient.searchLocationsByProductId(offset, limit, srcProduct.getId())
-                .getResponse().getLocations();
+                .getResponse().getEntities();
 
         assertThat(srcLocations).hasSize(1);
-        assertThat(first(srcLocations).getId()).isEqualTo(yextMainLocation.getId());
+        assertThat(first(srcLocations).getMeta().getId()).isEqualTo(yextMainLocation.getMeta().getId());
 
         srcProduct.setId(null);
         String langCode = changeLang(srcProduct.getLanguage());
@@ -116,16 +116,15 @@ public class ProductIntegrationTest extends BaseIntegrationTest
         stream(srcLocations).forEach(enLocation ->
         {
             Location langProfile = locationClient.getLocationProfile(
-                    enLocation.getId(), langCode
+                    enLocation.getMeta().getId(), langCode
             ).getResponse();
             locationClient.updateLocationProfileForProduct(langProfile, clonedId, langCode);
         });
 
         Location withClonedProduct = locationClient
-                .getLocationProfile(yextMainLocation.getId(), langCode).getResponse();
+                .getLocationProfile(yextMainLocation.getMeta().getId(), langCode).getResponse();
 
-
-        assertThat(withClonedProduct.getProductListIds()).contains(clonedId);
+        assertThat(withClonedProduct.getProductLists().getIds()).contains(clonedId);
 
         client.deleteProductById(srcProductId);
         client.deleteProductById(clonedId);
@@ -152,12 +151,12 @@ public class ProductIntegrationTest extends BaseIntegrationTest
         final int offset = 0;
         final int limit = 50;
         List<Location> srcLocations = locationClient.searchLocationsByProductId(offset, limit, srcProductId)
-                .getResponse().getLocations();
+                .getResponse().getEntities();
 
         stream(srcLocations).forEach(enLocation ->
         {
             Location langProfile = locationClient.getLocationProfile(
-                    enLocation.getId(), langCode
+                    enLocation.getMeta().getId(), langCode
             ).getResponse();
 
             locationClient.updateLocationProfileForProduct(langProfile, clonedId, langCode);

@@ -2,7 +2,7 @@ package com.smartling.connector.yext.sdk;
 
 import com.smartling.connector.yext.sdk.client.LocationClient;
 import com.smartling.connector.yext.sdk.client.MenuClient;
-import com.smartling.connector.yext.sdk.data.Location;
+import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.data.response.IdResponse;
 import com.smartling.connector.yext.sdk.data.response.menu.ListMenus;
 import com.smartling.connector.yext.sdk.data.response.menu.Menu;
@@ -98,14 +98,14 @@ public class MenuIntegrationTest extends BaseIntegrationTest
         locationClient.updateLocationProfileForMenu(yextMainLocation, srcMenu.getId(), srcMenu.getLanguage());
 
         // to search locations
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(10);
         final int offset = 0;
         final int limit = 50;
         List<Location> srcLocations = locationClient.searchLocationsByMenuId(offset, limit, srcMenu.getId())
-                .getResponse().getLocations();
+                .getResponse().getEntities();
 
         assertThat(srcLocations).hasSize(1);
-        assertThat(first(srcLocations).getId()).isEqualTo(yextMainLocation.getId());
+        assertThat(first(srcLocations).getMeta().getId()).isEqualTo(yextMainLocation.getMeta().getId());
 
         srcMenu.setId(null);
         String langCode = changeLang(srcMenu.getLanguage());
@@ -116,16 +116,16 @@ public class MenuIntegrationTest extends BaseIntegrationTest
         stream(srcLocations).forEach(enLocation ->
         {
             Location langProfile = locationClient.getLocationProfile(
-                    enLocation.getId(), langCode
+                    enLocation.getMeta().getId(), langCode
             ).getResponse();
             locationClient.updateLocationProfileForMenu(langProfile, clonedId, langCode);
         });
 
         Location withClonedMenu = locationClient
-                .getLocationProfile(yextMainLocation.getId(), langCode).getResponse();
+                .getLocationProfile(yextMainLocation.getMeta().getId(), langCode).getResponse();
 
 
-        assertThat(withClonedMenu.getMenuIds()).contains(clonedId);
+        assertThat(withClonedMenu.getMenus().getIds()).contains(clonedId);
 
         client.deleteMenuById(srcMenuId);
         client.deleteMenuById(clonedId);
@@ -154,12 +154,12 @@ public class MenuIntegrationTest extends BaseIntegrationTest
         final int offset = 0;
         final int limit = 50;
         List<Location> srcLocations = locationClient.searchLocationsByMenuId(offset, limit, srcMenuId)
-                .getResponse().getLocations();
+                .getResponse().getEntities();
 
         stream(srcLocations).forEach(enLocation ->
         {
             Location langProfile = locationClient.getLocationProfile(
-                    enLocation.getId(), langCode
+                    enLocation.getMeta().getId(), langCode
             ).getResponse();
 
             locationClient.updateLocationProfileForMenu(langProfile, clonedId, langCode);

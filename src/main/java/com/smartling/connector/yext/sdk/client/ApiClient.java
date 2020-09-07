@@ -1,5 +1,7 @@
 package com.smartling.connector.yext.sdk.client;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartling.connector.yext.sdk.OAuthConfiguration;
 import com.smartling.connector.yext.sdk.OAuthRequestInterceptor;
 import com.smartling.connector.yext.sdk.TimeoutConfiguration;
@@ -11,15 +13,20 @@ import feign.jackson.JacksonEncoder;
 
 public abstract class ApiClient
 {
-    private TimeoutConfiguration timeoutConfiguration;
-    final String accessToken;
     public static final String BASE_AUTH_API_URL = "https://api.yext.com/";
     public static final String BASE_API_URL = "https://api.yext.com/v2/";
+
+    private final TimeoutConfiguration timeoutConfiguration;
+    private final ObjectMapper objectMapper;
+    final String accessToken;
 
     public ApiClient(final TimeoutConfiguration timeoutConfiguration, String accessToken)
     {
         this.timeoutConfiguration = timeoutConfiguration;
         this.accessToken = accessToken;
+        this.objectMapper = new ObjectMapper()
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
     }
 
     static <A> A buildApi(final Class<A> apiClass, final String apiBaseUrl, final OAuthConfiguration OAuthConfiguration)
@@ -36,8 +43,8 @@ public abstract class ApiClient
     {
         return Feign.builder()
                     .requestInterceptor(new OAuthRequestInterceptor(accessToken))
-                    .encoder(new JacksonEncoder())
-                    .decoder(new JacksonDecoder())
+                    .encoder(new JacksonEncoder(objectMapper))
+                    .decoder(new JacksonDecoder(objectMapper))
                     .errorDecoder(new YextRestErrorDecoder())
                     .options(timeoutConfiguration.getOptions())
                     .target(apiClass, apiBaseUrl);

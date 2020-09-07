@@ -5,10 +5,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CustomOption
+public class CustomTranslation
 {
     private String value;
-
-    private String key;
+    private String languageCode;
 }
-

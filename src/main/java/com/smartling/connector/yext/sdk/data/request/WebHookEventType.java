@@ -5,9 +5,9 @@ public enum WebHookEventType
 
     ACCOUNT_UNLINKED,
 
-    LOCATION_CREATED,
+    ENTITY_CREATED,
 
-    LOCATION_UPDATED,
+    ENTITY_UPDATED,
 
     MENU_CREATED,
 
@@ -23,7 +23,7 @@ public enum WebHookEventType
 
     public static boolean isUpdateEvent(WebHookEventType eventType)
     {
-        return eventType == LOCATION_UPDATED || eventType == MENU_UPDATED || eventType == PRODUCTS_UPDATED;
+        return eventType == ENTITY_UPDATED || eventType == MENU_UPDATED || eventType == PRODUCTS_UPDATED;
     }
 
 }

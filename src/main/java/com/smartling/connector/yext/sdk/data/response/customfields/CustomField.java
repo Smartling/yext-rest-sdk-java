@@ -1,11 +1,16 @@
 package com.smartling.connector.yext.sdk.data.response.customfields;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class CustomField
 {
 
-    private String description;
+    private TranslatableValue description;
 
     public enum AlternateLanguageBehavior
     {
@@ -73,7 +78,7 @@ public class CustomField
 
     private GroupEnum group;
 
-    private String name;
+    private TranslatableValue name;
 
     private List<CustomOption> options;
 
@@ -84,6 +89,8 @@ public class CustomField
 
         BOOLEAN("BOOLEAN"),
 
+        CTA("CTA"),
+
         DAILY_TIMES("DAILY_TIMES"),
 
         DATE("DATE"),
@@ -92,6 +99,8 @@ public class CustomField
 
         HOURS("HOURS"),
 
+        ENTITY_LIST("ENTITY_LIST"),
+
         MULTILINE_TEXT("MULTILINE_TEXT"),
 
         MULTI_OPTION("MULTI_OPTION"),
@@ -99,6 +108,8 @@ public class CustomField
         NUMBER("NUMBER"),
 
         PHOTO("PHOTO"),
+
+        RICH_TEXT("RICH_TEXT"),
 
         SINGLE_OPTION("SINGLE_OPTION"),
 
@@ -110,9 +121,7 @@ public class CustomField
 
         VIDEO("VIDEO"),
 
-        VIDEO_GALLERY("VIDEO_GALLERY"),
-
-        LOCATION_LIST("LOCATION_LIST");
+        VIDEO_GALLERY("VIDEO_GALLERY");
 
         private String value;
 
@@ -131,86 +140,5 @@ public class CustomField
     private TypeEnum type;
 
     private String id;
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-
-    public AlternateLanguageBehavior getAlternateLanguageBehavior()
-    {
-        return alternateLanguageBehavior;
-    }
-
-    public void setAlternateLanguageBehavior(AlternateLanguageBehavior alternateLanguageBehavior)
-    {
-        this.alternateLanguageBehavior = alternateLanguageBehavior;
-    }
-
-    public GroupEnum getGroup()
-    {
-        return group;
-    }
-
-    public void setGroup(GroupEnum group)
-    {
-        this.group = group;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public List<CustomOption> getOptions()
-    {
-        return options;
-    }
-
-    public void setOptions(List<CustomOption> options)
-    {
-        this.options = options;
-    }
-
-    public CustomValidation getValidation()
-    {
-        return validation;
-    }
-
-    public void setValidation(CustomValidation validation)
-    {
-        this.validation = validation;
-    }
-
-    public TypeEnum getType()
-    {
-        return type;
-    }
-
-    public void setType(TypeEnum type)
-    {
-        this.type = type;
-    }
-
-    public String getId()
-    {
-        return id;
-    }
-
-    public void setId(String id)
-    {
-        this.id = id;
-    }
-
 }
 

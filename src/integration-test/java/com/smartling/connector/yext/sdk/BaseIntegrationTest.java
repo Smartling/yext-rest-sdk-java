@@ -4,7 +4,7 @@ import com.smartling.connector.yext.sdk.client.CustomFieldsClient;
 import com.smartling.connector.yext.sdk.client.LocationClient;
 import com.smartling.connector.yext.sdk.client.MenuClient;
 import com.smartling.connector.yext.sdk.client.ProductClient;
-import com.smartling.connector.yext.sdk.data.Location;
+import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.data.response.LocationsResponse;
 import org.junit.Before;
 
@@ -57,7 +57,7 @@ public class BaseIntegrationTest
                 .as("It is need to have at least one location with a 'main' substring in the name")
                 .isGreaterThan(0);
 
-        return first(locationsResponse.getResponse().getLocations());
+        return first(locationsResponse.getResponse().getEntities());
     }
 
 }
