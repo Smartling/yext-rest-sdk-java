@@ -1,10 +1,14 @@
 package com.smartling.connector.yext.sdk.data.request;
 
 import com.smartling.connector.yext.sdk.data.response.location.Location;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+@Data
+@NoArgsConstructor
 public class LocationWebHookRequest
 {
     @Valid
@@ -13,26 +17,5 @@ public class LocationWebHookRequest
 
     @Valid
     @NotNull
-    private Location location;
-
-    public WebHookMeta getMeta()
-    {
-        return meta;
-    }
-
-    public void setMeta(WebHookMeta meta)
-    {
-        this.meta = meta;
-    }
-
-    public Location getLocation()
-    {
-        return location;
-    }
-
-    public void setLocation(Location location)
-    {
-        this.location = location;
-    }
-
+    private Location primaryProfile;
 }

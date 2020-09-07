@@ -1,7 +1,12 @@
 package com.smartling.connector.yext.sdk.data.request;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotNull;
 
+@Data
+@NoArgsConstructor
 public class WebHookMeta
 {
 
@@ -18,65 +23,4 @@ public class WebHookMeta
 
     @NotNull
     private String appSpecificAccountId;
-
-    public WebHookEventType getEventType()
-    {
-        return eventType;
-    }
-
-    public void setEventType(WebHookEventType eventType)
-    {
-        this.eventType = eventType;
-    }
-
-    public String getUuid()
-    {
-        return uuid;
-    }
-
-    public void setUuid(String uuid)
-    {
-        this.uuid = uuid;
-    }
-
-    public String getTimestamp()
-    {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp)
-    {
-        this.timestamp = timestamp;
-    }
-
-    public String getAccountId()
-    {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId)
-    {
-        this.accountId = accountId;
-    }
-
-    public String getActor()
-    {
-        return actor;
-    }
-
-    public void setActor(String actor)
-    {
-        this.actor = actor;
-    }
-
-    public String getAppSpecificAccountId()
-    {
-        return appSpecificAccountId;
-    }
-
-    public void setAppSpecificAccountId(String appSpecificAccountId)
-    {
-        this.appSpecificAccountId = appSpecificAccountId;
-    }
-
 }
