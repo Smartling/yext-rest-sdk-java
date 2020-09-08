@@ -1,14 +1,15 @@
 package com.smartling.connector.yext.sdk.client;
 
 import com.smartling.connector.yext.sdk.TimeoutConfiguration;
-import com.smartling.connector.yext.sdk.data.response.location.EntityLink;
-import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.data.response.LocationProfilesResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationsResponse;
+import com.smartling.connector.yext.sdk.data.response.location.EntityLink;
+import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.rest.api.LocationApi;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.smartling.connector.yext.sdk.utils.RestApiUtils.generateV;
 
@@ -20,6 +21,11 @@ public class LocationClient extends ApiClient
     {
         super(timeoutConfiguration, accessToken);
         locationApi = buildApiWithOAuthAuthentication(LocationApi.class, BASE_API_URL);
+    }
+
+    public LocationsResponse getFields(int offset, int limit, List<String> fields)
+    {
+        return locationApi.getLocationFields(accessToken, generateV(), limit, offset, String.join(",", fields));
     }
 
     public LocationsResponse searchLocations(int offset, int limit, String search)

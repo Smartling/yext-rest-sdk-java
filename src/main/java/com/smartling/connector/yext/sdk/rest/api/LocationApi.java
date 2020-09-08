@@ -31,4 +31,9 @@ public interface LocationApi
     @Headers(CONTENT_TYPE_APPLICATION_JSON)
     void upsertLanguageProfile(@Param("entityId") String entityId, @Param("language_code") String languageCode, @Param("v") String v,
                                         @Param("access_token") String accessToken, Location entityLanguageProfile);
+
+    @RequestLine("GET /accounts/me/entities?entityTypes=location&access_token={access_token}&v={v}&limit={limit}&offset={offset}&fields={fields}")
+    LocationsResponse getLocationFields(@Param("access_token") String accessToken, @Param("v") String v,
+                                        @Param("limit") Integer limit, @Param("offset") Integer offset, @Param("fields") String filters);
+
 }
