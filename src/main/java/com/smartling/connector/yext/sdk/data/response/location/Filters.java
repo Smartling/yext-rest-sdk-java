@@ -27,9 +27,7 @@ public class Filters
     @Getter
     public enum Matcher
     {
-        IN  ("$in"),
         CONTAINS("$contains"),
-        CONTAINS_ANY("$containsAny") ,
         EQ("$eq");
 
         private final String value;

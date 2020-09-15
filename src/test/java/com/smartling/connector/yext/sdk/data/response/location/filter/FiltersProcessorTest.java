@@ -14,30 +14,12 @@ public class FiltersProcessorTest
     private FiltersProcessor target = new FiltersProcessor();
 
     @Test
-    public void containsAnyFilter()
-    {
-        Filters filters = new Filters();
-        filters.setFilters(singletonList(new Filters.Filter("name", Arrays.asList("v1", "v2"), Filters.Matcher.CONTAINS_ANY)));
-
-        assertThat(target.toJsonString(filters), equalTo("{\"$and\":[{\"name\": {\"$containsAny\":[\"v1\",\"v2\"]}}]}"));
-    }
-
-    @Test
-    public void inFilter()
-    {
-        Filters filters = new Filters();
-        filters.setFilters(singletonList(new Filters.Filter("name", Arrays.asList("v1", "v2"), Filters.Matcher.IN)));
-
-        assertThat(target.toJsonString(filters), equalTo("{\"$and\":[{\"name\": {\"$in\":[\"v1\",\"v2\"]}}]}"));
-    }
-
-    @Test
     public void eqFilter()
     {
         Filters filters = new Filters();
         filters.setFilters(singletonList(new Filters.Filter("name", Arrays.asList("v1", "v2"), Filters.Matcher.EQ)));
 
-        assertThat(target.toJsonString(filters), equalTo("{\"$and\":[{\"name\": {\"$eq\":\"v1\"}}]}"));
+        assertThat(target.toJsonString(filters), equalTo("{\"$and\":[{\"$or\":[{\"name\": {\"$eq\":\"v1\"}},{\"name\": {\"$eq\":\"v2\"}}]}]}"));
     }
 
     @Test
@@ -46,6 +28,6 @@ public class FiltersProcessorTest
         Filters filters = new Filters();
         filters.setFilters(singletonList(new Filters.Filter("name", Arrays.asList("v1", "v2"), Filters.Matcher.CONTAINS)));
 
-        assertThat(target.toJsonString(filters), equalTo("{\"$and\":[{\"name\": {\"$contains\":\"v1\"}}]}"));
+        assertThat(target.toJsonString(filters), equalTo("{\"$and\":[{\"$or\":[{\"name\": {\"$contains\":\"v1\"}},{\"name\": {\"$contains\":\"v2\"}}]}]}"));
     }
 }
