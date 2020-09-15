@@ -89,7 +89,7 @@ public class CustomField
 
         BOOLEAN("BOOLEAN"),
 
-        CTA("CTA"),
+        CALL_TO_ACTION("CALL_TO_ACTION"),
 
         DAILY_TIMES("DAILY_TIMES"),
 
@@ -108,6 +108,8 @@ public class CustomField
         NUMBER("NUMBER"),
 
         PHOTO("PHOTO"),
+
+        SIMPLE_PHOTO("SIMPLE_PHOTO"),
 
         RICH_TEXT("RICH_TEXT"),
 
