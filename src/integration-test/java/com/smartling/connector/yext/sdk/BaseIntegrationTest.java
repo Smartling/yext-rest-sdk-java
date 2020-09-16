@@ -4,9 +4,12 @@ import com.smartling.connector.yext.sdk.client.CustomFieldsClient;
 import com.smartling.connector.yext.sdk.client.LocationClient;
 import com.smartling.connector.yext.sdk.client.MenuClient;
 import com.smartling.connector.yext.sdk.client.ProductClient;
-import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.data.response.LocationsResponse;
+import com.smartling.connector.yext.sdk.data.response.location.Filters;
+import com.smartling.connector.yext.sdk.data.response.location.Location;
 import org.junit.Before;
+
+import java.util.Arrays;
 
 import static com.smartling.connector.yext.sdk.utils.CollectionUtils.first;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,7 +54,9 @@ public class BaseIntegrationTest
 
     public static Location getYextMainLocation(LocationClient client)
     {
-        LocationsResponse locationsResponse = client.searchLocations(0, 50, "main");
+        Filters filters = new Filters();
+        filters.setFilters(Arrays.asList(new Filters.Filter("name", Arrays.asList("main"), Filters.Matcher.CONTAINS)));
+        LocationsResponse locationsResponse = client.searchLocations(0, 50, filters);
         assertThat(locationsResponse).isNotNull();
         assertThat(locationsResponse.getResponse().getCount())
                 .as("It is need to have at least one location with a 'main' substring in the name")
