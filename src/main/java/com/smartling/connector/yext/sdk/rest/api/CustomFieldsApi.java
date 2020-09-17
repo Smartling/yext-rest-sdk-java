@@ -1,5 +1,6 @@
 package com.smartling.connector.yext.sdk.rest.api;
 
+import com.smartling.connector.yext.sdk.data.response.customfields.CustomFieldResponse;
 import com.smartling.connector.yext.sdk.data.response.customfields.CustomFieldsResponse;
 import feign.Headers;
 import feign.Param;
@@ -15,4 +16,6 @@ public interface CustomFieldsApi
     CustomFieldsResponse listCustomFields(@Param("access_token") String accessToken, @Param("v") String v,
                                           @Param("offset") Integer offset, @Param("limit") Integer limit);
 
+    @RequestLine("GET /accounts/me/customfields/{field_id}?access_token={access_token}&v={v}")
+    CustomFieldResponse getCustomField(@Param("access_token") String accessToken, @Param("v") String v, @Param("field_id") String fieldId);
 }
