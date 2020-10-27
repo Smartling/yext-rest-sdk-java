@@ -9,6 +9,7 @@ import com.smartling.connector.yext.sdk.data.response.location.Filters;
 import com.smartling.connector.yext.sdk.data.response.location.Location;
 import org.junit.Before;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.smartling.connector.yext.sdk.utils.CollectionUtils.first;
@@ -56,7 +57,7 @@ public class BaseIntegrationTest
     {
         Filters filters = new Filters();
         filters.setFilters(Arrays.asList(new Filters.Filter("name", Arrays.asList("main"), Filters.Matcher.CONTAINS)));
-        LocationsResponse locationsResponse = client.searchLocations(0, 50, filters);
+        LocationsResponse locationsResponse = client.searchLocations(0, 50, filters, new ArrayList<>());
         assertThat(locationsResponse).isNotNull();
         assertThat(locationsResponse.getResponse().getCount())
                 .as("It is need to have at least one location with a 'main' substring in the name")

@@ -14,9 +14,13 @@ import static com.smartling.connector.yext.sdk.utils.RestApiUtils.CONTENT_TYPE_A
 @Headers(ACCEPT_APPLICATION_JSON)
 public interface LocationApi
 {
-    @RequestLine("GET /accounts/me/entities?entityTypes=location&access_token={access_token}&v={v}&limit={limit}&offset={offset}&filter={filters}")
-    LocationsResponse searchLocations(@Param("access_token") String accessToken, @Param("v") String v,
-                                      @Param("limit") Integer limit, @Param("offset") Integer offset, @Param("filters") String filters);
+    @RequestLine("GET /accounts/me/entities?entityTypes=location&access_token={access_token}&v={v}&limit={limit}&offset={offset}&filter={filters}&sortBy={sortBy}")
+    LocationsResponse searchLocations(@Param("access_token") String accessToken,
+                                      @Param("v") String v,
+                                      @Param("limit") Integer limit,
+                                      @Param("offset") Integer offset,
+                                      @Param("filters") String filters,
+                                      @Param("sortBy") String sortBy);
 
     @RequestLine("GET /accounts/me/entities/{entityId}?access_token={access_token}&v={v}")
     LocationResponse getLocation(@Param("entityId") String entityId, @Param("access_token") String accessToken, @Param("v") String v);
