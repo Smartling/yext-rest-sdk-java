@@ -9,7 +9,6 @@ import java.util.List;
 @NoArgsConstructor
 public class CustomField
 {
-
     private TranslatableValue description;
 
     public enum AlternateLanguageBehavior
@@ -37,46 +36,7 @@ public class CustomField
 
     private AlternateLanguageBehavior alternateLanguageBehavior;
 
-    public enum GroupEnum
-    {
-
-        NONE("NONE"),
-
-        GROUP_1("GROUP_1"),
-
-        GROUP_2("GROUP_2"),
-
-        GROUP_3("GROUP_3"),
-
-        GROUP_4("GROUP_4"),
-
-        GROUP_5("GROUP_5"),
-
-        GROUP_6("GROUP_6"),
-
-        GROUP_7("GROUP_7"),
-
-        GROUP_8("GROUP_8"),
-
-        GROUP_9("GROUP_9"),
-
-        GROUP_10("GROUP_10");
-
-        private String value;
-
-        GroupEnum(String value)
-        {
-            this.value = value;
-        }
-
-        @Override
-        public String toString()
-        {
-            return String.valueOf(value);
-        }
-    }
-
-    private GroupEnum group;
+    private String group;
 
     private TranslatableValue name;
 
