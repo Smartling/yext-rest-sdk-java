@@ -64,11 +64,7 @@ public class LocationClient extends ApiClient
 
     public void upsertLocationLanguageProfile(String locationId, String languageCode, Location location)
     {
-        location.setMenus(null);
         location.setProductLists(null);
-        // TODO only for a none primary language profile
-        location.setPaymentOptions(null);
-        location.setClosed(null);
         locationApi.upsertLanguageProfile(locationId, languageCode, generateV(), accessToken, location);
     }
 
