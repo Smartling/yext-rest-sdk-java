@@ -26,13 +26,11 @@ public class Location
     private List<String> languages;
     private Image logo;
     private List<Image> photoGallery;
-    private EntityLink productLists;
     private Url reservationUrl;
     private List<String> services;
     private List<String> keywords;
     private List<String> products;
     private List<String> specialities;
-    private EntityLink menus;
 
     @JsonIgnore
     private Map<String, Object> customFields = new HashMap<>();
