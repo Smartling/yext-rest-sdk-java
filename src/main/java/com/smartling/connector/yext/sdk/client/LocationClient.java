@@ -6,6 +6,7 @@ import com.smartling.connector.yext.sdk.data.response.LocationProfilesResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationsResponse;
 import com.smartling.connector.yext.sdk.data.response.location.Filters;
+import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.data.response.location.filter.FiltersProcessor;
 import com.smartling.connector.yext.sdk.rest.api.LocationApi;
 
@@ -57,5 +58,10 @@ public class LocationClient extends ApiClient
     public LocationResponse getLocationProfile(String locationId, String languageCode)
     {
         return locationApi.getLanguageProfile(locationId, accessToken, generateV(), languageCode);
+    }
+
+    public void upsertLocationLanguageProfile(String locationId, String languageCode, Location location)
+    {
+        locationApi.upsertLanguageProfile(locationId, languageCode, generateV(), accessToken, location);
     }
 }
