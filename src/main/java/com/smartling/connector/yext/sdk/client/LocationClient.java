@@ -5,13 +5,10 @@ import com.smartling.connector.yext.sdk.data.request.sort.Sort;
 import com.smartling.connector.yext.sdk.data.response.LocationProfilesResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationResponse;
 import com.smartling.connector.yext.sdk.data.response.LocationsResponse;
-import com.smartling.connector.yext.sdk.data.response.location.EntityLink;
 import com.smartling.connector.yext.sdk.data.response.location.Filters;
-import com.smartling.connector.yext.sdk.data.response.location.Location;
 import com.smartling.connector.yext.sdk.data.response.location.filter.FiltersProcessor;
 import com.smartling.connector.yext.sdk.rest.api.LocationApi;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.smartling.connector.yext.sdk.data.request.sort.SortProcessor.toJson;
@@ -60,47 +57,5 @@ public class LocationClient extends ApiClient
     public LocationResponse getLocationProfile(String locationId, String languageCode)
     {
         return locationApi.getLanguageProfile(locationId, accessToken, generateV(), languageCode);
-    }
-
-    public void upsertLocationLanguageProfile(String locationId, String languageCode, Location location)
-    {
-        location.setMenus(null);
-        location.setProductLists(null);
-        // TODO only for a none primary language profile
-        location.setPaymentOptions(null);
-        location.setClosed(null);
-        locationApi.upsertLanguageProfile(locationId, languageCode, generateV(), accessToken, location);
-    }
-
-    public void updateLocationProfileForMenu(Location locationProfile, String menuId, String languageCode)
-    {
-        if (locationProfile.getMenus() == null)
-        {
-            locationProfile.setMenus(new EntityLink());
-        }
-        if (locationProfile.getMenus().getIds() == null)
-        {
-            locationProfile.getMenus().setIds(new ArrayList<>());
-        }
-        locationProfile.getMenus().getIds().add(menuId);
-        locationApi.upsertLanguageProfile(
-                locationProfile.getMeta().getId(), languageCode, generateV(), accessToken, locationProfile
-        );
-    }
-
-    public void updateLocationProfileForProduct(Location locationProfile, String productId, String languageCode)
-    {
-        if (locationProfile.getProductLists() == null)
-        {
-            locationProfile.setProductLists(new EntityLink());
-        }
-        if (locationProfile.getProductLists().getIds() == null)
-        {
-            locationProfile.getProductLists().setIds(new ArrayList<>());
-        }
-        locationProfile.getProductLists().getIds().add(productId);
-        locationApi.upsertLanguageProfile(
-                locationProfile.getMeta().getId(), languageCode, generateV(), accessToken, locationProfile
-        );
     }
 }

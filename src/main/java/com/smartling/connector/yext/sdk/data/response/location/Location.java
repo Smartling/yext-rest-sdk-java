@@ -19,46 +19,16 @@ public class Location
     private String name;
     private Address address;
     private String additionalHoursText;
-    private boolean addressHidden;
-    private String alternatePhone;
     private List<String> associations;
-    private EntityLink bios;
     private List<String> brands;
-    private Boolean closed;
     private String description;
-    private List<String> emails;
-    private String facebookPageUrl;
-    private String fax;
     private FeaturedMessage featuredMessage;
-    private String geomodifier;
-    private Boolean holidayHoursConversationEnabled;
-    private Object hours;
-    private String instagramHandle;
-    private String isoRegionCode;
-    private String landingPageUrl;
     private List<String> languages;
     private Image logo;
-    private Url menuUrl;
-    private String mobilePhone;
-    private Url orderUrl;
-    private List<String> paymentOptions;
     private List<Image> photoGallery;
-
-    private EntityLink productLists;
     private Url reservationUrl;
-
     private List<String> services;
-    private String tollFreePhone;
-    private String ttyPhone;
-    private String twitterHandle;
-    private List<Videos> videos;
-    private Url websiteUrl;
-    private Integer yearEstablished;
-    private String androidAppUrl;
-    private EntityLink calendars;
     private List<String> keywords;
-    private String iosAppUrl;
-    private EntityLink menus;
     private List<String> products;
     private List<String> specialities;
 
