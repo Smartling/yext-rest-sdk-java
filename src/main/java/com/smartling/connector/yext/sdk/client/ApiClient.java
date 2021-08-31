@@ -25,7 +25,8 @@ public abstract class ApiClient
         this.timeoutConfiguration = timeoutConfiguration;
         this.accessToken = accessToken;
         this.objectMapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                .configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE, true);
 
     }
 
