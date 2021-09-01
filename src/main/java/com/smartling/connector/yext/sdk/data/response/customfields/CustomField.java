@@ -1,5 +1,6 @@
 package com.smartling.connector.yext.sdk.data.response.customfields;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -83,7 +84,10 @@ public class CustomField
 
         VIDEO("VIDEO"),
 
-        VIDEO_GALLERY("VIDEO_GALLERY");
+        VIDEO_GALLERY("VIDEO_GALLERY"),
+
+        @JsonEnumDefaultValue
+        UNKNOWN("UNKNOWN");
 
         private String value;
 
